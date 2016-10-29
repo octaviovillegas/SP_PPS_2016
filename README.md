@@ -1,7 +1,7 @@
 # SP_PPS_2016
 Segundo parcial
 
-Equipo: Energised Karoline
+Equipo: Triggered
 
 -Joaquin Pérez (Lider)
 -Julian Barrientos (Carga de datos)
