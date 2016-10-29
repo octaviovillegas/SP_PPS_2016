@@ -4,7 +4,7 @@ Segundo parcial
 Equipo: Triggered
 
 -Joaquin Pérez (Lider)
--Julian Barrientos (Carga de datos)
+-Julian Barrientos (Carga de datos) Primer comit
 -Demian Acosta (Mapa)
 -Juan Fafasuli (Login)
 
