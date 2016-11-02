@@ -32,11 +32,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap']
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+ .state('app.sos', {
+    url: '/sos',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/SOS.html',
+          controller: 'SOSCtrl'
       }
     }
   })
