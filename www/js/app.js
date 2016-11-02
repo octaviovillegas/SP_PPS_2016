@@ -41,11 +41,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap']
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.mapa', {
+      url: '/mapa',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/mapa.html',
+          controller: 'mapaCtrl'
         }
       }
     })
