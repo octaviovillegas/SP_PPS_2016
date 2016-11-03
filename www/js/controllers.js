@@ -1,5 +1,9 @@
 angular.module('starter.controllers', [])
 
+.factory("Info", function($firebaseArray) {
+  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+  return $firebaseArray(infosRef);
+})
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -55,8 +59,8 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams) {
-  
+.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,Info) {
+   $scope.infos = Info;
    
     // When button is clicked, the popup will be shown...
    $scope.showPopup = function(tipo) {
@@ -73,7 +77,13 @@ angular.module('starter.controllers', [])
             {text: '<b>Save</b>',
              type: 'button-positive',
                   onTap: function(e) {
-            
+
+                          $scope.infos.$add({
+                           "tipo": tipo,
+                            "lat": -34.6627076,
+                            "lon": -58.3634342,
+                            "usu":"pepe"
+                          });   
                   }
             }
          ]
