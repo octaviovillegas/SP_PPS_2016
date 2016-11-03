@@ -1,7 +1,10 @@
 <ion-view view-title="Mapa">
   <ion-content scroll="false">
-		<ng-map center="Argentina" zoom="4" default-style="false">  	
-		</ng-map>  
+		<ng-map center="Argentina" zoom="4" default-style="false">  
+			<marker ng-repeat="info in infos" position="[{{info.lat}},{{info.long}}]">
+				{{info.lat}},{{info.long}}
+			</marker>
 
+		</ng-map> 
   </ion-content>
 </ion-view>
