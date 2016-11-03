@@ -58,7 +58,13 @@ angular.module('starter.controllers', [])
 .controller('SOSCtrl', function($scope, $stateParams) {
 })
 
-.controller('mapaCtrl', function($scope, $stateParams) {
+.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray) {
+
+  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/");
+  $scope.infos = infosRef;
+
+  console.log($scope.infos);  
 });
+
 
 
