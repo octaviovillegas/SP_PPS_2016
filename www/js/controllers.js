@@ -55,7 +55,34 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('SOSCtrl', function($scope, $stateParams) {
+.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams) {
+  
+   
+    // When button is clicked, the popup will be shown...
+   $scope.showPopup = function(tipo) {
+      $scope.data = {}
+    
+      // Custom popup
+      var myPopup = $ionicPopup.show({
+         template: 'Seguro que queres mandar un SOS?',
+         title: 'Enviar SOS',
+         scope: $scope,
+      
+         buttons: [
+            { text: 'Cancel' }, 
+            {text: '<b>Save</b>',
+             type: 'button-positive',
+                  onTap: function(e) {
+            
+                  }
+            }
+         ]
+      });
+
+      myPopup.then(function(res) {
+        
+      });    
+   };
 })
 
 .controller('mapaCtrl', function($scope, $stateParams) {

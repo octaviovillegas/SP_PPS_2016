@@ -1,28 +1,31 @@
 <ion-view view-title="SOS">
 	<ion-content>
-		<h1>S.O.S.</h1>
-		<div style="width:40%">
-			<div class="list">
-				<label class="item item-input item-select">
-					<div class="input-label">
-						Tipo
+		<form>
+			<div>
+				<div class="list">
+					<div class="pading">
+							<button type="button"  class="button button-block button-positive " ng-click="showPopup(0)">
+								Accidente
+							</button>
 					</div>
-					<select>
-						<option>Accidente</option>
-						<option selected>Avería de Vehículo</option>
-						<option>Animal Suelto </option>
-						<option>Necesidad de Ambulancia</option>
-					</select>
-				</label>
+					
+					<div class="pading">
+						<button type="button"  class="button button-block button-positive " ng-click="showPopup(1)">
+								Averia de Vehiculo
+						</button>
+					</div>
+					<div class="pading">
+						<button type="button"  class="button button-block button-positive " ng-click="showPopup(2)">
+								Animal Suelto 
+						</button>
+					</div>
+					<div class="pading">
+						<button type="button"  class="button button-block button-positive " ng-click="showPopup(3)">
+								Necesidad de Ambulancia
+						</button>
+					</div>
 			</div>
-			<label class="item item-input">
-				<span class="input-label">Nombre</span>
-				<input type="tel">
-			</label>
-			<label class="item item-input">
-				<span class="input-label">Apellido</span>
-				<input type="tel">
-			</label>
-		</div>
+			
+		</form>
 	</ion-content>
 </ion-view>
