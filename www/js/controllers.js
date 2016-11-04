@@ -77,13 +77,24 @@ angular.module('starter.controllers', [])
             {text: '<b>Save</b>',
              type: 'button-positive',
                   onTap: function(e) {
-
-                          $scope.infos.$add({
+                    var options = {
+                        enableHighAccuracy: true
+                    };
+                    var latlon;
+                      navigator.geolocation.getCurrentPosition(function(pos) {
+                         $scope.infos.$add({
                            "tipo": tipo,
-                            "lat": -34.6627076,
-                            "lon": -58.3634342,
+                            "lat":pos.coords.latitude,
+                            "lon": pos.coords.longitude,
                             "usu":"pepe"
-                          });   
+                          });               
+                      }, 
+                      function(error) {                    
+                          alert('Unable to get location: ' + error.message);
+                      }, options);
+
+                          
+                           
                   }
             }
          ]
