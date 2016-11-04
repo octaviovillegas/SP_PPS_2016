@@ -106,12 +106,12 @@ angular.module('starter.controllers', [])
    };
 })
 
-.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray) {
+.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info) {
 
-  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/");
-  $scope.infos = infosRef;
+  $scope.marcasMapa =Info;
 
-  console.log($scope.infos);  
+  console.log($scope.marcasMapa);  
+  
 });
 
 
