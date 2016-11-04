@@ -95,21 +95,12 @@ angular.module('starter.controllers', [])
    };
 })
 
-.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout) {
+.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info) {
 
-  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
-
-  $scope.marcasMapa =[];
-  
-  infosRef.on('child_added', function (snapshot) {    
-    $timeout(function(){
-      var message = snapshot.val();
-      $scope.marcasMapa.push(message);
-      console.log($scope.user);
-    });
-  });
+  $scope.marcasMapa =Info;
 
   console.log($scope.marcasMapa);  
+  
 });
 
 
