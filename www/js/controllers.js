@@ -58,12 +58,21 @@ angular.module('starter.controllers', [])
 .controller('SOSCtrl', function($scope, $stateParams) {
 })
 
-.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray) {
+.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout) {
 
-  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/");
-  $scope.infos = infosRef;
+  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
 
-  console.log($scope.infos);  
+  $scope.marcasMapa =[];
+  
+  infosRef.on('child_added', function (snapshot) {    
+    $timeout(function(){
+      var message = snapshot.val();
+      $scope.marcasMapa.push(message);
+      console.log($scope.user);
+    });
+  });
+
+  console.log($scope.marcasMapa);  
 });
 
 
