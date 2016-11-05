@@ -45,19 +45,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-})
 
 .controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,Info) {
    $scope.infos = Info;
@@ -108,9 +96,22 @@ angular.module('starter.controllers', [])
 
 .controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info) {
 
+  var options = {
+                  enableHighAccuracy: true
+                };
+
+  navigator.geolocation.getCurrentPosition(function(pos) {
+                         $scope.inicial=({
+                            "lat":pos.coords.latitude,
+                            "lon": pos.coords.longitude
+                          });               
+                      },
+                      function(error) {                    
+                          alert('Unable to get location: ' + error.message);
+                      }, options);
+
   $scope.marcasMapa =Info;
 
-  console.log($scope.marcasMapa);  
   
 });
 
