@@ -1,0 +1,15 @@
+<ion-view view-title="Mapa">
+  <ion-content scroll="false" class="slideinMap">
+		<ng-map center="[{{inicial.lat}},{{inicial.lon}}]" zoom="13" default-style="false">  
+			<custom-marker ng-repeat="marca in marcasMapa" position="[{{marca.lat}},{{marca.lon}}]">
+
+			 	<div>
+
+			 		<img src="img/{{marca.tipo}}.png" height="42" width="42">
+			 	</div>
+			</custom-marker>
+
+		</ng-map> 
+
+  </ion-content>
+</ion-view>

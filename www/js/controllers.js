@@ -43,6 +43,8 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+<<<<<<< HEAD
+=======
 })
 
 
@@ -113,6 +115,7 @@ angular.module('starter.controllers', [])
   $scope.marcasMapa =Info;
 
   
+>>>>>>> 4ac53e747cdd16acf8520351a12df63edfc92a22
 });
 
 
