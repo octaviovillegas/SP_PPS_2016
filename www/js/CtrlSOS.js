@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,Info) {
+.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info) {
    $scope.infos = Info;
    
     // When button is clicked, the popup will be shown...
@@ -27,7 +27,8 @@ angular.module('starter')
                            "tipo": tipo,
                             "lat":pos.coords.latitude,
                             "lon": pos.coords.longitude,
-                            "usu":"pepe"
+                            "usu":"pepe",
+                            "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
                       }, 
                       function(error) {                    
