@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap','firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -48,6 +48,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
         'menuContent': {
           templateUrl: 'templates/mapa.html',
           controller: 'mapaCtrl'
+        }
+      }
+    })
+
+  .state('app.grafico', {
+      url: '/graficos',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/graficos.html',
+          controller: 'graficoCtrl'
         }
       }
     })
