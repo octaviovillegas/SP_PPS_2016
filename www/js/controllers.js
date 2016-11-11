@@ -4,6 +4,10 @@ angular.module('starter.controllers', [])
   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
   return $firebaseArray(infosRef);
 })
+.factory("Ratings", function($firebaseArray) {
+  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
+  return $firebaseArray(infosRef);
+})
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called

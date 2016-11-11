@@ -61,6 +61,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
         }
       }
     })
+    .state('app.rating', {
+      url: '/rating',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/rating.html',
+          controller: 'RatingCtrl'
+        }
+      }
+    })
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/mapa');
