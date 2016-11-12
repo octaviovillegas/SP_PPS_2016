@@ -1,7 +1,10 @@
 angular.module('starter')
 
-.controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings) {
-	 $scope.infos =Info;
+.controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings,refUsuarioActualVal) {
+	
+
+
+  $scope.infos =Info;
    // set the rate and max variables
   $scope.rating = {};
   $scope.rating.rate = 3;
