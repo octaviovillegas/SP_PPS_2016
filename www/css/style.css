@@ -78,4 +78,7 @@ ul.rating li {
 ul.rating li i {
   font-size: 30px;
 }
+.popup{
+  width: 265px !important;
+}
 
