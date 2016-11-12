@@ -6,7 +6,7 @@ angular.module('starter')
   $scope.rating = {};
   $scope.rating.rate = 3;
   $scope.rating.max = 5;
-  $scope.showPopup = function(tipo) {
+  $scope.showPopup = function(id) {
   var myPopup = $ionicPopup.show({
          template: 'Seguro que queres mandar un SOS?<br>'
          +'<div>'
@@ -29,6 +29,7 @@ angular.module('starter')
                          Ratings.$add({
                            "rate":$scope.rating.rate,
                             "usu":"pepe",
+                            "SosId":id,
                             "comentario":$scope.rating.comment,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
