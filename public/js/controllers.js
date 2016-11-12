@@ -4,6 +4,10 @@ angular.module('starter.controllers', [])
   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
   return $firebaseArray(infosRef);
 })
+.factory("Ratings", function($firebaseArray) {
+  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
+  return $firebaseArray(infosRef);
+})
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -43,79 +47,6 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-<<<<<<< HEAD
-=======
-})
-
-
-
-.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,Info) {
-   $scope.infos = Info;
-   
-    // When button is clicked, the popup will be shown...
-   $scope.showPopup = function(tipo) {
-      $scope.data = {}
-    
-      // Custom popup
-      var myPopup = $ionicPopup.show({
-         template: 'Seguro que queres mandar un SOS?',
-         title: 'Enviar SOS',
-         scope: $scope,
-      
-         buttons: [
-            { text: 'Cancel' }, 
-            {text: '<b>Save</b>',
-             type: 'button-positive',
-                  onTap: function(e) {
-                    var options = {
-                        enableHighAccuracy: true
-                    };
-                    var latlon;
-                      navigator.geolocation.getCurrentPosition(function(pos) {
-                         $scope.infos.$add({
-                           "tipo": tipo,
-                            "lat":pos.coords.latitude,
-                            "lon": pos.coords.longitude,
-                            "usu":"pepe"
-                          });               
-                      }, 
-                      function(error) {                    
-                          alert('Unable to get location: ' + error.message);
-                      }, options);
-
-                          
-                           
-                  }
-            }
-         ]
-      });
-
-      myPopup.then(function(res) {
-        
-      });    
-   };
-})
-
-.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info) {
-
-  var options = {
-                  enableHighAccuracy: true
-                };
-
-  navigator.geolocation.getCurrentPosition(function(pos) {
-                         $scope.inicial=({
-                            "lat":pos.coords.latitude,
-                            "lon": pos.coords.longitude
-                          });               
-                      },
-                      function(error) {                    
-                          alert('Unable to get location: ' + error.message);
-                      }, options);
-
-  $scope.marcasMapa =Info;
-
-  
->>>>>>> 4ac53e747cdd16acf8520351a12df63edfc92a22
 });
 
 
