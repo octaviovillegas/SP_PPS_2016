@@ -8,7 +8,7 @@
 </ion-floating-menu>
 
   <ion-content scroll="false" class="slideinMap">
-		<ng-map center="[{{inicial.lat}},{{inicial.lon}}]" zoom="13" default-style="false">  
+		<ng-map center="[{{inicial.lat}},{{inicial.lon}}]" zoom="13" default-style="false" disable-default-u-i="true">  
 			<custom-marker ng-repeat="marca in marcasMapa" position="[{{marca.lat}},{{marca.lon}}]">
 
 			 	<div>

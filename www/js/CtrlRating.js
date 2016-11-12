@@ -1,7 +1,15 @@
 angular.module('starter')
 
-.controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings) {
-	 $scope.infos =Info;
+.controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings,refUsuarioActualVal) {
+	console.log(refUsuarioActualVal.ref.usr);
+new Firebase("https://examples-sql-queries.firebaseio.com/Ratings/"+refUsuarioActualVal.usr).once('value', show);
+
+function show(snap) {
+   console.log(snap.val());
+}
+
+
+  $scope.infos =Info;
    // set the rate and max variables
   $scope.rating = {};
   $scope.rating.rate = 3;
