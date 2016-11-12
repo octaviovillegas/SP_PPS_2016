@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3', 'ion-floating-menu', 'ionic.rating'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3', 'ion-floating-menu', 'ionic.rating', 'chart.js'])
 
-.run(function($ionicPlatform) {
+/*.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +19,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+  });
+})*/
+.run(function($ionicPlatform){
+  $ionicPlatform.ready(function(){
+    var.push = new Ionic.Push({
+      "debug" : true;
+    });
+    push.register(function(token){
+      console.log("my device token:", token.token);
+      push.saveToken(token);
+    });
+
+
   });
 })
 
@@ -86,6 +99,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
     url: '/registro', 
     templateUrl: 'templates/registro.html',
     controller: 'registroCtrl'
+  })
+  
+  .state('app.feedBack', {
+    url: '/feedBack', 
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/feedBack.html',
+        controller: 'feedBackCtrl'
+      }
+    }
+  })
+  .state('app.listaDeUsuarios', {
+    url: '/listaDeUsuarios', 
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/listaDeUsuarios.html',
+        controller: 'listaDeUsuariosCtrl'
+      }
+    }
   })
 
 
