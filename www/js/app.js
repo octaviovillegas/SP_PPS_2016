@@ -75,27 +75,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
       }
     })
 
-  .state('app.login', {
+  .state('login', {
     url: '/login',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/SOS.html',
-        controller: 'loginCtrl'
-      }
-    }
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+
   })
 
-  .state('app.registro', {
+  .state('registro', {
     url: '/registro', 
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/registro.html',
-        controller: 'registroCtrl'
-      }
-    }
+    templateUrl: 'templates/registro.html',
+    controller: 'registroCtrl'
   })
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/login');
+  $urlRouterProvider.otherwise('/login');
 });

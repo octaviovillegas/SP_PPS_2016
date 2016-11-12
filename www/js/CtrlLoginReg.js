@@ -1,21 +1,7 @@
 angular.module('starter')
 
-.controller('loginCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, refUsuarioActualVal, $ionicModal) {
+.controller('loginCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, refUsuarioActualVal, $state) {
   $scope.loginData = {};
-
-  if(refUsuarioActualVal.ref == null){
-    $ionicModal.fromTemplateUrl('templates/login.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modal = modal;
-
-      console.log(refUsuarioActualVal.ref);
-      
-      $scope.modal.show();
-      
-      
-    });
-  }
   // Hacer logueo
   $scope.loguear = function() {
 
@@ -30,7 +16,7 @@ angular.module('starter')
     }else{
 
       //INICIO...
-      var refUsuarios = firebase.database().ref('Usuarios/' + $scope.loginData.user);
+      var refUsuarios = firebase.database().ref('usuarios/' + $scope.loginData.user);
       refUsuarios.once('value')
         .then(function(snapshot){
           infoUsuario = snapshot.val();
@@ -39,8 +25,8 @@ angular.module('starter')
             if(infoUsuario.contra == $scope.loginData.contra){
               alert("Bienvenido " + $scope.loginData.user);
               refUsuarioActualVal.ref = refUsuarios;
-              //location.href="#/app/mapa";
-              $scope.modal.hide();
+              location.href="#/app/mapa";
+              //$state.go('mapa');
             }else{
               alert("El password es incorrecto");
               return;
@@ -55,6 +41,32 @@ angular.module('starter')
         })
     }
   }
+
+   /*INICIAR SESION CON GITHUB*/
+  var provider = new firebase.auth.GithubAuthProvider();
+  $scope.logearGithub = function(){
+    firebase.auth().signInWithPopup(provider)
+      .then(function(result) {
+        //Guardar en DB
+        var refUsuarios = firebase.database().ref('usuariosGithub/' + result.user.uid);
+        refUsuarios.once('value')
+          .then(function(snapshot){
+            if(snapshot.val() == null){
+              alert("Esta cuenta no está registrada...");
+              location.href='#/registro';
+            }
+          })
+          .catch(function(error){
+            console.info(error);
+          });
+        //Guardar referencia
+        refUsuarioActualVal.ref = refUsuarios;
+        //Redireccionar
+        location.href='#/app/mapa';
+      }).catch(function(error) {
+        console.info(error);
+      });
+    }
 })
 
 .controller('registroCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, refUsuarioActualVal) {
@@ -84,7 +96,7 @@ angular.module('starter')
 
       //INICIO...
       
-      firebase.database().ref('Usuarios').once('value', function(snapshot){
+      firebase.database().ref('usuarios').once('value', function(snapshot){
         var flagExiste = false;
         var usuarios = snapshot.val();
         $.each(usuarios, function(i){
@@ -94,7 +106,7 @@ angular.module('starter')
         })
 
         if(!flagExiste){      
-          var refUsuarios = firebase.database().ref('Usuarios/' + $scope.regData.user);        
+          var refUsuarios = firebase.database().ref('usuarios/' + $scope.regData.user);        
           refUsuarioActualVal.ref = refUsuarios;
           refUsuarios.ref.set({
             usr: $scope.regData.user,
@@ -103,6 +115,7 @@ angular.module('starter')
           });
           alert("Bienvenidx " + $scope.regData.user);
           location.href="#/app/mapa";
+          //$scope.modalRg.hide();
         }else{
           alert("Este usuario ya existe...");
           return;
@@ -110,6 +123,40 @@ angular.module('starter')
       });  
     }
   }
+
+  /*REGISTRAR SESION CON GITHUB*/
+  var provider = new firebase.auth.GithubAuthProvider();
+  $scope.registroGithub = function(){
+    if($scope.regData.tipo == null) {
+      alert("Seleccione un tipo de usuario");
+      return;
+    }
+    firebase.auth().signInWithPopup(provider)
+      .then(function(result) {
+        //Guardar en DB
+        var refUsuarios = firebase.database().ref('usuariosGithub/' + result.user.uid);
+        refUsuarios.once('value')
+          .then(function(snapshot){
+            if(snapshot.val() == null){
+              refUsuarios.set({
+                usr: result.user.email,
+                id: result.user.uid,
+                tipo: $scope.regData.tipo
+              });
+            }
+          })
+          .catch(function(error){
+            console.info(error);
+          });
+        //Guardar referencia
+        refUsuarioActualVal.ref = refUsuarios;
+        //Redireccionar
+        location.href='#/app/mapa';
+      }).catch(function(error) {
+        console.info(error);
+      });
+    }
+
 });
 
 
