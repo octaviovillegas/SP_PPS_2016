@@ -1,6 +1,6 @@
 <ion-view view-title="Mapa">
 
-<ion-floating-menu has-footer="false" bottom="80%" >
+<ion-floating-menu>
     <ion-floating-item icon="ion-camera" text="Accidente" ng-click="showPopup(0)"></ion-floating-item>
     <ion-floating-item icon="ion-person" text="Averia de Vehiculo" ng-click="showPopup(1)"></ion-floating-item>
     <ion-floating-item icon="ion-camera" text="Animal Suelto" ng-click="showPopup(2)"> </ion-floating-item>
@@ -8,11 +8,11 @@
 </ion-floating-menu>
 
   <ion-content scroll="false" class="slideinMap">
-		<ng-map center="[{{inicial.lat}},{{inicial.lon}}]" zoom="13" default-style="false">  
+		<ng-map center="[{{inicial.lat}},{{inicial.lon}}]" zoom="13" default-style="false"  disable-default-u-i="true"
+>  
 			<custom-marker ng-repeat="marca in marcasMapa" position="[{{marca.lat}},{{marca.lon}}]">
 
 			 	<div>
-
 			 		<img src="img/{{marca.tipo}}.png" height="42" width="42">
 			 	</div>
 			</custom-marker>

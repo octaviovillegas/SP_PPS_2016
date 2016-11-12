@@ -1,6 +1,7 @@
 angular.module('starter')
 
 .controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info) {
+  
    $scope.infos = Info;
    
     // When button is clicked, the popup will be shown...
