@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter) {
+.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter, refUsuarioActualVal) {
 
   $scope.marcasMapa =Info;
 

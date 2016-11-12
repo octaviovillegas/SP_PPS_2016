@@ -1,6 +1,7 @@
 angular.module('starter')
 
 .controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info) {
+  
    $scope.infos = Info;
    var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
    var lastid=0;
