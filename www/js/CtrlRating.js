@@ -1,7 +1,7 @@
 angular.module('starter')
 
 .controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings,refUsuarioActualVal) {
-	
+
 
 
   $scope.infos =Info;

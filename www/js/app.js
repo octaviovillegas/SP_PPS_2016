@@ -23,8 +23,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
 })*/
 .run(function($ionicPlatform){
   $ionicPlatform.ready(function(){
-    var.push = new Ionic.Push({
-      "debug" : true;
+    var push = new Ionic.Push({
+      "debug" : true
     });
     push.register(function(token){
       console.log("my device token:", token.token);
