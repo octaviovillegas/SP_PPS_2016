@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3', 'ion-floating-menu', 'ionic.rating', 'chart.js'])
 
-/*.run(function($ionicPlatform) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,8 +20,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
       StatusBar.styleDefault();
     }
   });
-})*/
-.run(function($ionicPlatform){
+})
+/*.run(function($ionicPlatform){
   $ionicPlatform.ready(function(){
     var push = new Ionic.Push({
       "debug" : true
@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
 
 
   });
-})
+})*/
 
 .value('refUsuarioActualVal', {
     ref: null
