@@ -9,12 +9,14 @@ angular.module('starter.controllers', [])
   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
   return $firebaseArray(infosRef);
 })
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, refUsuarioActualVal) {
   // Cerrar sesion
   $scope.logout = function() {
     alert("Sesion cerrada!");
     refUsuarioActualVal.ref = null;
-    location.href="#/app/login";
+    //Cerrar sesion DE GITHUB
+    firebase.auth().signOut();
+    location.href="#/login";
   };
 });
 
