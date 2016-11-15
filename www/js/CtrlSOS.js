@@ -32,7 +32,7 @@ angular.module('starter')
                            "tipo": tipo,
                             "lat":pos.coords.latitude,
                             "lon": pos.coords.longitude,
-                            "usu":"pepe",
+                            "usu": firebase.User.uid,
                             "id":lastid,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               

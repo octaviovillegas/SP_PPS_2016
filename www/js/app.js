@@ -35,10 +35,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
   });
 })*/
 
-.value('refUsuarioActualVal', {
-    ref: null
-})
-
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

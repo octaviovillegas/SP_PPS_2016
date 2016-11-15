@@ -1,3 +1,4 @@
+//firebase.User.uid;
 angular.module('starter')
 
 .controller('loginCtrl', function($scope, $firebaseArray) {
@@ -21,6 +22,7 @@ angular.module('starter')
     /*Loguear con mail y password*/
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(function(usuario){ /*Logueo exitoso*/
+        firebase.User = usuario;
         alert("Bienvenidx " + usuario.displayName);
         location.href="#/app/mapa"; //Redireccionamiento
       })
@@ -80,7 +82,7 @@ angular.module('starter')
     /*Registrar con mail y password*/
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function(usuario){ /*Registro exitoso*/
-
+        firebase.User = usuario;
         usuario.updateProfile({
           displayName: nombre
         }).then(function() {

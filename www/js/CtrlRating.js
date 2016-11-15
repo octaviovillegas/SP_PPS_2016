@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings,refUsuarioActualVal) {
+.controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings) {
 
 
 
@@ -31,7 +31,7 @@ angular.module('starter')
                       navigator.geolocation.getCurrentPosition(function(pos) {
                          Ratings.$add({
                            "rate":$scope.rating.rate,
-                            "usu":"pepe",
+                            "usu": firebase.User.uid,
                             "SosId":id,
                             "comentario":$scope.rating.comment,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')

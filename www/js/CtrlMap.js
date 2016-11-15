@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter, refUsuarioActualVal) {
+.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter) {
 
   $scope.marcasMapa =Info;
 
@@ -43,9 +43,9 @@ angular.module('starter')
                       navigator.geolocation.getCurrentPosition(function(pos) {
                          $scope.infos.$add({
                            "tipo": tipo,
-                            "lat":pos.coords.latitude,
+                            "lat": pos.coords.latitude,
                             "lon": pos.coords.longitude,
-                            "usu":"pepe",
+                            "usu": firebase.User.uid,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
                       }, 
