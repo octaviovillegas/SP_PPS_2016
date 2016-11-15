@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('loginCtrl', function($scope, $firebaseArray, $timeout) {
+.controller('loginCtrl', function($scope, $firebaseArray) {
 
   $scope.loginData = {};
   $scope.Loguear = function(){
@@ -20,8 +20,8 @@ angular.module('starter')
 
     /*Loguear con mail y password*/
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(function(){ /*Logueo exitoso*/
-        alert("Bienvenidx" + email);
+      .then(function(usuario){ /*Logueo exitoso*/
+        alert("Bienvenidx " + usuario.displayName);
         location.href="#/app/mapa"; //Redireccionamiento
       })
       .catch(function(error) { /*Manejo de errores*/
@@ -48,93 +48,73 @@ angular.module('starter')
 
 })
 
-.controller('registroCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, refUsuarioActualVal) {
+.controller('registroCtrl', function($scope, $firebaseArray) {
 
   $scope.regData = {};
   // Hacer logueo
-  $scope.registrar = function() {
+  $scope.Registrar = function() {
 
-    console.info($scope.regData);
-    //VALIDAR DATOS
-    if($scope.regData.user == null){
-      alert("No se ingreso usuario");
-      return;
-    }else if ($scope.regData.contra1 == null){
-      alert("No se ingreso password");
-      return;
-    }else if ($scope.regData.contra2 == null){
-      alert("No se confirmo password");
-      return;
-    } else if ($scope.regData.contra1 != $scope.regData.contra2){
-      alert("Los passwords no coinciden");
-      return;
-    }else if ($scope.regData.tipo == null){
-      alert("No se eligio tipo de usuario");
-      return;
-    }else{
+    /*Validar datos de logueo*/
+    if($scope.regData.nombre == null){ 
+      alert("Ingrese un nombre.");
+      return -1;
+    } else if($scope.regData.email == null){ 
+      alert("Ingrese un email.");
+      return -1;
+    } else if($scope.regData.password1 == null){
+      alert("Ingrese un password.");
+      return -1;
+    } else if($scope.regData.password2 == null){
+      alert("Ingrese nuevamente su password.");
+      return -1;
+    } else if($scope.regData.password1 != $scope.regData.password2){
+      alert("Los passwords no coinciden.");
+      return -1;
+    }
 
-      //INICIO...
-      
-      firebase.database().ref('usuarios').once('value', function(snapshot){
-        var flagExiste = false;
-        var usuarios = snapshot.val();
-        $.each(usuarios, function(i){
-          if(usuarios[i].usr == $scope.regData.user){
-            flagExiste = true;
-          }
-        })
+    /*Crear variables con datos de registro*/
+    var nombre = $scope.regData.nombre;
+    var email = $scope.regData.email;
+    var password = $scope.regData.password1;
 
-        if(!flagExiste){      
-          var refUsuarios = firebase.database().ref('usuarios/' + $scope.regData.user);        
-          refUsuarioActualVal.ref = refUsuarios;
-          refUsuarios.ref.set({
-            usr: $scope.regData.user,
-            contra: $scope.regData.contra1,
-            tipo: $scope.regData.tipo
-          });
-          alert("Bienvenidx " + $scope.regData.user);
-          location.href="#/app/mapa";
-          //$scope.modalRg.hide();
-        }else{
-          alert("Este usuario ya existe...");
-          return;
+    /*Registrar con mail y password*/
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(function(usuario){ /*Registro exitoso*/
+
+        usuario.updateProfile({
+          displayName: nombre
+        }).then(function() {
+          var displayName = usuario.displayName;
+        }, function(error) {
+          console.info(error);
+        });
+
+        alert("Bienvenidx " + nombre);
+        location.href="#/app/mapa"; //Redireccionamiento
+      })
+      .catch(function(error) { /*Manejo de errores*/
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        if (errorCode == 'auth/email-already-in-use') {
+          alert('El email ingresado ya se encuentra en uso.');
+        } 
+        else if (errorCode == 'auth/invalid-email') {
+          alert('El email ingresado no es válido.');
+        } 
+        else if (errorCode == 'auth/operation-not-allowed') {
+          alert('Esta operación se encuentra deshabilitada.');
+        } 
+        else if (errorCode == 'auth/weak-password') {
+          alert('El password ingresado es muy debil.');
+        } 
+        else {
+          alert(errorMessage); //Otro tipo de error
         }
-      });  
-    }
-  }
-
-  /*REGISTRAR SESION CON GITHUB*/
-  var provider = new firebase.auth.GithubAuthProvider();
-  $scope.registroGithub = function(){
-    if($scope.regData.tipo == null) {
-      alert("Seleccione un tipo de usuario");
-      return;
-    }
-    firebase.auth().signInWithPopup(provider)
-      .then(function(result) {
-        //Guardar en DB
-        var refUsuarios = firebase.database().ref('usuariosGithub/' + result.user.uid);
-        refUsuarios.once('value')
-          .then(function(snapshot){
-            if(snapshot.val() == null){
-              refUsuarios.set({
-                usr: result.user.email,
-                id: result.user.uid,
-                tipo: $scope.regData.tipo
-              });
-            }
-          })
-          .catch(function(error){
-            console.info(error);
-          });
-        //Guardar referencia
-        refUsuarioActualVal.ref = refUsuarios;
-        //Redireccionar
-        location.href='#/app/mapa';
-      }).catch(function(error) {
         console.info(error);
       });
-    }
+
+  }
 
 });
 

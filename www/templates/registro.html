@@ -5,32 +5,29 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="registrar()">
+    <form ng-submit="Registrar()">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="regData.user">
+          <span class="input-label">Nombre</span>
+          <input type="text" ng-model="regData.nombre">
         </label>
         <label class="item item-input">
-          <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="regData.contra1">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="regData.email">
         </label>
         <label class="item item-input">
-          <span class="input-label">Repetir contraseña</span>
-          <input type="password" ng-model="regData.contra2">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="regData.password1">
         </label>
-        <select id="desafio-tipo" ng-model="regData.tipo">
-          <option value="usr">Usuario</option>
-          <option value="ayuda">Ayuda</option>
-        </select>
+        <label class="item item-input">
+          <span class="input-label">Repetir password</span>
+          <input type="password" ng-model="regData.password2">
+        </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Registrarse</button>
         </label>
       </div>
     </form>
-    <br>
-    <button class="button button-block button-positive" ng-click="registroGithub()">Registrar con github</button>
-    <br><br>
-    <button id="login-button4" style="font-weight:600;" class="button button-balanced  button-block button-clear" onclick="location.href='#/login'">¿Ya tenes cuenta? Logeeate</button>
+    <button id="login-button4" style="font-weight:600;" class="button button-balanced  button-block button-clear" onclick="location.href='#/login'">¿Ya tenes cuenta? Logueate</button>
   </ion-content>
 </ion-view>
