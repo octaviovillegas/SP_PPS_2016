@@ -6,83 +6,46 @@ angular.module('starter')
   $scope.Loguear = function(){
 
     /*Validar datos de logueo*/
-    if($scope.loginData.usuario == null){ 
-      alert("Ingrese un usuario");
+    if($scope.loginData.email == null){ 
+      alert("Ingrese un email");
       return -1;
     }else if($scope.loginData.password == null){
       alert("Ingrese un password");
       return -1;
     }
 
+    /*Crear variables con datos de logueo*/
+    var email = $scope.loginData.email;
+    var password = $scope.loginData.password;
+
     /*Loguear con mail y password*/
-
-  }
-
-  /*// Hacer logueo
-  $scope.loguear = function() {
-
-    console.info($scope.loginData);
-    //VALIDAR DATOS
-    if($scope.loginData.user == null){
-      alert("No se ingreso usuario");
-      return;
-    }else if ($scope.loginData.contra == null){
-      alert("No se ingreso password");
-      return;
-    }else{
-
-      //INICIO...
-      var refUsuarios = firebase.database().ref('usuarios/' + $scope.loginData.user);
-      refUsuarios.once('value')
-        .then(function(snapshot){
-          infoUsuario = snapshot.val();
-          if(infoUsuario != null){
-            
-            if(infoUsuario.contra == $scope.loginData.contra){
-              alert("Bienvenido " + $scope.loginData.user);
-              refUsuarioActualVal.ref = refUsuarios;
-              location.href="#/app/mapa";
-              //$state.go('mapa');
-            }else{
-              alert("El password es incorrecto");
-              return;
-            }
-          }else{
-            alert("Este usuario no existe...");
-            return;
-          }
-        })
-        .error(function(error){
-          console.info(error);
-        })
-    }
-  }
-
-   /*INICIAR SESION CON GITHUB
-  var provider = new firebase.auth.GithubAuthProvider();
-  $scope.logearGithub = function(){
-    firebase.auth().signInWithPopup(provider)
-      .then(function(result) {
-        //Guardar en DB
-        var refUsuarios = firebase.database().ref('usuariosGithub/' + result.user.uid);
-        refUsuarios.once('value')
-          .then(function(snapshot){
-            if(snapshot.val() == null){
-              alert("Esta cuenta no está registrada...");
-              location.href='#/registro';
-            }
-          })
-          .catch(function(error){
-            console.info(error);
-          });
-        //Guardar referencia
-        refUsuarioActualVal.ref = refUsuarios;
-        //Redireccionar
-        location.href='#/app/mapa';
-      }).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(function(){ /*Logueo exitoso*/
+        alert("Bienvenidx" + email);
+        location.href="#/app/mapa"; //Redireccionamiento
+      })
+      .catch(function(error) { /*Manejo de errores*/
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/invalid-email') {
+          alert('El email ingresado no es válido.');
+        } 
+        else if (errorCode == 'auth/user-disabled') {
+          alert('El usuario ha sido deshabilitado.');
+        } 
+        else if (errorCode == 'auth/user-not-found') {
+          alert('El usuario ingresado no existe.');
+        } 
+        else if (errorCode == 'auth/wrong-password') {
+          alert('El password ingresado es incorrecto.');
+        } 
+        else {
+          alert(errorMessage); //Otro tipo de error
+        }
         console.info(error);
       });
-    }*/
+  }
+
 })
 
 .controller('registroCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, refUsuarioActualVal) {
