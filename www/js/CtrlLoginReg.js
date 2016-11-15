@@ -1,8 +1,24 @@
 angular.module('starter')
 
-.controller('loginCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, refUsuarioActualVal, $state) {
+.controller('loginCtrl', function($scope, $firebaseArray, $timeout) {
+
   $scope.loginData = {};
-  // Hacer logueo
+  $scope.Loguear = function(){
+
+    /*Validar datos de logueo*/
+    if($scope.loginData.usuario == null){ 
+      alert("Ingrese un usuario");
+      return -1;
+    }else if($scope.loginData.password == null){
+      alert("Ingrese un password");
+      return -1;
+    }
+
+    /*Loguear con mail y password*/
+
+  }
+
+  /*// Hacer logueo
   $scope.loguear = function() {
 
     console.info($scope.loginData);
@@ -42,7 +58,7 @@ angular.module('starter')
     }
   }
 
-   /*INICIAR SESION CON GITHUB*/
+   /*INICIAR SESION CON GITHUB
   var provider = new firebase.auth.GithubAuthProvider();
   $scope.logearGithub = function(){
     firebase.auth().signInWithPopup(provider)
@@ -66,7 +82,7 @@ angular.module('starter')
       }).catch(function(error) {
         console.info(error);
       });
-    }
+    }*/
 })
 
 .controller('registroCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, refUsuarioActualVal) {
