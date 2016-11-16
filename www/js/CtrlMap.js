@@ -1,8 +1,10 @@
 angular.module('starter')
 
-.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter) {
+.controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter,Admin) {
 
   $scope.marcasMapa =Info;
+
+
 
   var options = {
                   enableHighAccuracy: true
@@ -20,6 +22,7 @@ angular.module('starter')
 
 
   $scope.infos = Info;
+
    
     // When button is clicked, the popup will be shown...
    $scope.showPopup = function(tipo) {
