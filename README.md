@@ -1,5 +1,5 @@
 # Segundo Parcial PPS - Equipo Triggered
-##Roles
+##Integrantes - Responsabilidades
 ### Joaquin Pérez
 * Creación de archivos
 * CSS
