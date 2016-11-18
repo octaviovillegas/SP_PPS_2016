@@ -1,12 +1,11 @@
 <ion-view view-title="Rating">
 	<ion-content>
-
-			<div ng-repeat="info in infos" >
+		<div ng-repeat="info in infos" >
 			<div class="card pading">
 			  <div> 
 			  	<img src="img/{{info.tipo}}.png" height="42" width="42">
 			  	 Fecha:  {{info.date}}
-			  	 <div class="rate pading"> <button class="button button-balanced" ng-click="showPopup()">Rate</button> </div>
+			  	 <div class="rate pading"> <button class="button button-balanced" ng-click="showPopup({{info.id}})">Rate</button> </div>
 			  <div>
 			</div>
 		</div>

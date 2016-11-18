@@ -1,12 +1,17 @@
 angular.module('starter')
 
 .controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info) {
+  
    $scope.infos = Info;
-   
+   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+   var lastid=0;
     // When button is clicked, the popup will be shown...
    $scope.showPopup = function(tipo) {
       $scope.data = {}
-    
+      infosRef.limit(1).once("child_added", function (snapshot) {
+        lastid=(snapshot.val().id==undefined)?1:snapshot.val().id+1;
+        console.log(lastid);
+      });
       // Custom popup
       var myPopup = $ionicPopup.show({
          template: 'Seguro que queres mandar un SOS?',
@@ -27,7 +32,8 @@ angular.module('starter')
                            "tipo": tipo,
                             "lat":pos.coords.latitude,
                             "lon": pos.coords.longitude,
-                            "usu":"pepe",
+                            "usu": firebase.User.uid,
+                            "id":lastid,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
                       }, 
