@@ -4,8 +4,6 @@ angular.module('starter')
 
   $scope.marcasMapa =Info;
 
-
-
   var options = {
                   enableHighAccuracy: true
                 };
@@ -48,7 +46,7 @@ angular.module('starter')
                            "tipo": tipo,
                             "lat": pos.coords.latitude,
                             "lon": pos.coords.longitude,
-                            "usu": firebase.User.uid,
+                            "usu": firebase.auth().currentUser.uid,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
                       }, 
