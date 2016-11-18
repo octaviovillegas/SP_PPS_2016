@@ -6611,7 +6611,8 @@ button.item.item-button-right {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 0;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+ }
 
 .list:last-child {
   margin-bottom: 0px; }

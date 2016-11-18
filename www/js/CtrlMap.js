@@ -3,11 +3,12 @@ angular.module('starter')
 .controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter,Admin) {
 
   $scope.marcasMapa =Info;
-
+  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+  var lastid=0;
   var options = {
                   enableHighAccuracy: true
                 };
-
+    
   navigator.geolocation.getCurrentPosition(function(pos) {
                          $scope.inicial=({
                             "lat":pos.coords.latitude,
@@ -21,6 +22,10 @@ angular.module('starter')
 
   $scope.infos = Info;
 
+    infosRef.limit(1).once("child_added", function (snapshot) {
+      lastid=(snapshot.val().id==undefined)?1:snapshot.val().id+1;
+      console.log(lastid);
+    });
    
     // When button is clicked, the popup will be shown...
    $scope.showPopup = function(tipo) {
@@ -48,6 +53,7 @@ angular.module('starter')
                             "lat": pos.coords.latitude,
                             "lon": pos.coords.longitude,
                             "usu": firebase.auth().currentUser.uid,
+                            "id":lastid,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
                       }, 

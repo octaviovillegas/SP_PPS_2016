@@ -4,30 +4,31 @@
     <div class="buttons">
     </div>
   </ion-header-bar>
-  <ion-content>
+  <ion-content class="BGgreen700">
     <form ng-submit="Registrar()" >
-      <div class="list" >
-        <label class="item item-input" >
-          <span class="input-label letra" style="color: #ffffff">Nombre</span>
-          <input type="text" ng-model="regData.nombre" class="letra">
+      <div class="list login" >
+
+        <label class="item item-input inputLogin" >
+          <span class="input-label " >Nombre</span>
+          <input type="text" ng-model="regData.nombre" class="">
         </label>
-        <label class="item item-input">
-          <span class="input-label letra" style="color: #ffffff">Email</span>
-          <input type="text" ng-model="regData.email" class="letra">
+        <label class="item item-input inputLogin">
+          <span class="input-label " >Email</span>
+          <input type="text" ng-model="regData.email" class="">
         </label>
-        <label class="item item-input">
-          <span class="input-label letra" style="color: #ffffff">Password</span>
-          <input type="password" ng-model="regData.password1" class="letra">
+        <label class="item item-input inputLogin">
+          <span class="input-label ">Password</span>
+          <input type="password" ng-model="regData.password1" class="">
         </label>
-        <label class="item item-input">
-          <span class="input-label letra">Repetir password</span>
-          <input type="password" ng-model="regData.password2" class="letra">
+        <label class="item item-input inputLogin">
+          <span class="input-label ">Repetir password</span>
+          <input type="password" ng-model="regData.password2" class="">
         </label>
-        <label class="item">
+        <label class="btnLogin">
           <button class="button button-block button-balanced" type="submit">Registrarse</button>
         </label>
       </div>
     </form>
-    <button id="login-button4" style="font-weight:600;" class="button button-positive  button-block button-clear" onclick="location.href='#/login'">¿Ya tenes cuenta? Logueate</button>
+    <button id="login-button4" style="font-weight:600;color:#ffffff;" class="button button-positive  button-block button-clear" onclick="location.href='#/login'">¿Ya tenes cuenta? Logueate</button>
   </ion-content>
 </ion-view>

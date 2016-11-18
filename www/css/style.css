@@ -88,6 +88,10 @@ ul.rating li i {
   border-color: #8BC34A;
   color: #ffffff;
 }
+.BGNat{
+  background-color: #ededed;
+  
+}
 
 .BGgreen700{
   background-color: #689F38;
@@ -114,21 +118,31 @@ ul.rating li i {
     border-color: #689F38;
     color: #ffffff;
 }
-ion-content{
-  background-color: #8BC34A;
-}
+
 .item{
-  background-color: #9CCC65;
+  /*background-color: #9CCC65;*/
   /*border-color: #9CCC65;*/
-  color: #ffffff;
+ /* color: #ffffff;*/
   border-radius: 5px;
 }
 .item .item-content {
   background-color: transparent !important;
 }
 .letra{
-  color: #ffffff!important;
-  text-shadow: 2px 0 0 #689F38, -2px 0 0 #689F38, 0 2px 0 #689F38, 0 -2px 0 #689F38, 1px 1px #689F38, -1px -1px 0 #689F38, 1px -1px 0 #689F38, -1px 1px 0 #689F38;
+  color: #ffffff!important; 
+ /* text-shadow: 2px 0 0 #689F38, -2px 0 0 #689F38, 0 2px 0 #689F38, 0 -2px 0 #689F38, 1px 1px #689F38, -1px -1px 0 #689F38, 1px -1px 0 #689F38, -1px 1px 0 #689F38;*/
 }
+.login{
+    margin: 40px;
+    color:#000000;
+}
+.inputLogin{
+  margin-bottom: 10px;
+  color:#000000 !important;
+}
+.btnLogin{
+  color:#000000;
+}
+
 
 

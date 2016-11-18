@@ -1,4 +1,4 @@
-<ion-view view-title="Mapa" class="BGgreen">
+<ion-view view-title="Mapa" class="BGNat">
 <ion-floating-menu>
     <ion-floating-item icon="ion-android-car" text="Accidente" button-color="#f1c40f" ng-click="showPopup(0)"></ion-floating-item>
     <ion-floating-item icon="ion-wrench" text="Averia de Vehiculo" button-color="#3498db" ng-click="showPopup(1)"></ion-floating-item>
@@ -6,8 +6,8 @@
     <ion-floating-item icon="ion-medkit" text="Ambulancia" button-color="#e74c3c" ng-click="showPopup(3)"></ion-floating-item>
 </ion-floating-menu>
 
-  <ion-content scroll="false" class="slideinMap">
-		<ng-map center="[{{inicial.lat}},{{inicial.lon}}]" zoom="13" default-style="false" disable-default-u-i="true">  
+  <ion-content scroll="false" class="slideinMap" ng-if="inicial != null"> 
+		<ng-map center="[{{inicial.lat}},{{inicial.lon}}]" zoom="13" default-style="false" disable-default-u-i="true" >  
 			<custom-marker ng-repeat="marca in marcasMapa" position="[{{marca.lat}},{{marca.lon}}]">
 
 			 	<div>
@@ -16,7 +16,6 @@
 			</custom-marker>
 
 		</ng-map> 
-
   </ion-content>
 
 </ion-view>

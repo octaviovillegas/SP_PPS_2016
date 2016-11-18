@@ -3,15 +3,22 @@ angular.module('starter')
 .controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings) {
 
 
-  new Firebase("https://triggered-4e761.firebaseio.com/SOS/usu/"+firebase.User.uid).once('value', function(snapshot){
-    $scope.infos = snapshot.val();
-  });
+  $scope.info =Info;
+  $scope.usu = firebase.auth().currentUser.uid;
 
    // set the rate and max variables
   $scope.rating = {};
   $scope.rating.rate = 3;
   $scope.rating.max = 5;
+
   $scope.showPopup = function(id) {
+    var rate;
+    for(var i=0;i<Ratings.lenght;i++){
+        if(Ratings[i].SosId == id){
+          rate = Ratings[i];
+        }
+    }
+    console.log(rate);
   var myPopup = $ionicPopup.show({
          template: 'Seguro que queres mandar un SOS?<br>'
          +'<div>'
@@ -33,7 +40,6 @@ angular.module('starter')
                       navigator.geolocation.getCurrentPosition(function(pos) {
                          Ratings.$add({
                            "rate":$scope.rating.rate,
-                            "usu": firebase.User.uid,
                             "SosId":id,
                             "comentario":$scope.rating.comment,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
