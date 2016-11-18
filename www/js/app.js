@@ -107,7 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
     }
   })
   .state('app.listadeSOS', {
-    url: '/listaDeUsuarios', 
+    url: '/listadeSOS', 
     views: {
       'menuContent': {
         templateUrl: 'templates/listadeSOS.html',

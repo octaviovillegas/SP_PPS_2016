@@ -53,6 +53,7 @@ angular.module('starter')
                             "lat": pos.coords.latitude,
                             "lon": pos.coords.longitude,
                             "usu": firebase.auth().currentUser.uid,
+                            "usuName": firebase.auth().currentUser.displayName,
                             "id":lastid,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
