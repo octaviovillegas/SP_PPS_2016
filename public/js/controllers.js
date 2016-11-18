@@ -4,49 +4,44 @@ angular.module('starter.controllers', [])
   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
   return $firebaseArray(infosRef);
 })
+
 .factory("Ratings", function($firebaseArray) {
   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
   return $firebaseArray(infosRef);
 })
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.factory("Admin", function($firebaseArray) {
+  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Admin");
+  return $firebaseArray(infosRef);
+})
 
-  // Form data for the login modal
-  $scope.loginData = {};
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,Admin) {
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+  var admins = Admin;
+  var user = firebase.auth().currentUser;
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+  if(user==null){
+    alert("No esta Logeado");
+    location.href="#/login"; //Redireccionamiento
   };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
+  admins.$loaded()
+    .then(function(){
+        angular.forEach(admins, function(admin) {
+            if(admin.$value === user.uid){
+              $scope.autorizo = true;
+            }
+        })
+    });
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+  // Cerrar sesion
+  $scope.logout = function() {
+    alert("Sesion cerrada!");
+    //Cerrar sesion DE GITHUB
+    firebase.auth().signOut();
+    location.href="#/login";
   };
+  $scope.usr = firebase.User.displayName;
 });
 
 

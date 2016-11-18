@@ -1,10 +1,25 @@
-# SP_PPS_2016
-Segundo parcial
+# Segundo Parcial PPS - Equipo Triggered
+##Integrantes - Responsabilidades
+### Joaquin Pérez
+* Creación de archivos
+* CSS
 
-Equipo: Triggered
+### Julian Barrientos
+* Carga de datos
+* Boton flotante
+* Raiting
 
--Joaquin Pérez (Lider)
--Julian Barrientos (Carga de datos) Primer comit
--Demian Acosta (Mapa) Primer comit
--Juan Fafasuli (Login)
+###Demian Acosta
+* Manejo de mapa
+* Grafico
 
+###Juan Fafasuli
+* Login
+* Manejo de usuarios
+
+----
+##App
+* IonicView ID: **6E561ABE**
+* [Firebase Hosting](https://triggered-4e761.firebaseapp.com)
+* [APK]() 
+##INFO

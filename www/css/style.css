@@ -82,3 +82,53 @@ ul.rating li i {
   width: 265px !important;
 }
 
+/*COLOR*/
+.BGgreen{
+  background-color: #8BC34A;
+  border-color: #8BC34A;
+  color: #ffffff;
+}
+
+.BGgreen700{
+  background-color: #689F38;
+  border-color: #689F38;
+  color: #ffffff;
+}
+
+.BGgreen300{
+  background-color: #AED581;
+  border-color: #AED581;
+  color: #ffffff;
+}
+
+
+.background, .background .pane, .background {
+    background-color: #8BC34A;
+}
+.bar.bar-stable {
+    background-color: #689F38;
+    color: #f4f4f4;
+}
+.bar.bar-stable .title {
+    background-color: #689F38;
+    border-color: #689F38;
+    color: #ffffff;
+}
+ion-content{
+  background-color: #8BC34A;
+}
+.item{
+  background-color: #9CCC65;
+  /*border-color: #9CCC65;*/
+  color: #ffffff;
+  border-radius: 5px;
+}
+.item .item-content {
+  background-color: transparent !important;
+}
+.letra{
+  color: #ffffff!important;
+  text-shadow: 2px 0 0 #689F38, -2px 0 0 #689F38, 0 2px 0 #689F38, 0 -2px 0 #689F38, 1px 1px #689F38, -1px -1px 0 #689F38, 1px -1px 0 #689F38, -1px 1px 0 #689F38;
+}
+
+
