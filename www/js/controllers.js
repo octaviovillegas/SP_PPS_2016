@@ -17,7 +17,8 @@ angular.module('starter.controllers', [])
     firebase.auth().signOut();
     location.href="#/login";
   };
-  $scope.usr = firebase.User.displayName;
+  console.log(firebase.auth().currentUser);
+  $scope.usr = firebase.auth().currentUser;
 });
 
 
