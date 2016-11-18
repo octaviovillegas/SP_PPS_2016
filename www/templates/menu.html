@@ -14,7 +14,7 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Usuario: {{usr}}</h1>
+      <h1 class="title">Usuario: {{usr.displayName}}</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
@@ -27,6 +27,9 @@
         </ion-item>
         <ion-item menu-close href="#/app/graficos" ng-if="autorizo">
           Graficos
+        </ion-item>
+         <ion-item menu-close href="#/app/listaDeUsuarios" ng-if="autorizo">
+          Lista de Usuarios
         </ion-item>
         <ion-item menu-close ng-click="logout()">
           Logout
