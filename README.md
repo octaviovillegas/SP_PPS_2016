@@ -22,4 +22,3 @@
 * IonicView ID: **6E561ABE**
 * [Firebase Hosting](https://triggered-4e761.firebaseapp.com)
 * [APK]() 
-##INFO
