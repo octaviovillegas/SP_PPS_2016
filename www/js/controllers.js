@@ -18,7 +18,8 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout,Admin) {
 
   var admins = Admin;
-  var user = firebase.auth().currentUser;
+  var user = firebase.auth().currentUser;  
+  $scope.usr = firebase.auth().currentUser;
 
   if(user==null){
     alert("No esta Logeado");
@@ -41,8 +42,6 @@ angular.module('starter.controllers', [])
     firebase.auth().signOut();
     location.href="#/login";
   };
-  console.log(firebase.auth().currentUser);
-  $scope.usr = firebase.auth().currentUser;
 });
 
 
