@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3', 'ion-floating-menu', 'ionic.rating'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3', 'ion-floating-menu', 'ionic.rating', 'chart.js'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +21,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
     }
   });
 })
+/*.run(function($ionicPlatform){
+  $ionicPlatform.ready(function(){
+    var push = new Ionic.Push({
+      "debug" : true
+    });
+    push.register(function(token){
+      console.log("my device token:", token.token);
+      push.saveToken(token);
+    });
+
+
+  });
+})*/
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -71,7 +84,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
       }
     })
 
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+
+  })
+
+  .state('registro', {
+    url: '/registro', 
+    templateUrl: 'templates/registro.html',
+    controller: 'registroCtrl'
+  })
+  
+  .state('app.feedBack', {
+    url: '/feedBack', 
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/feedBack.html',
+        controller: 'feedBackCtrl'
+      }
+    }
+  })
+  .state('app.listaDeUsuarios', {
+    url: '/listaDeUsuarios', 
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/listaDeUsuarios.html',
+        controller: 'listaDeUsuariosCtrl'
+      }
+    }
+  })
+
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/mapa');
+  $urlRouterProvider.otherwise('/login');
 });

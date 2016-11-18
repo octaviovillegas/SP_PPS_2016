@@ -1,12 +1,15 @@
 angular.module('starter')
 
 .controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings) {
-	 $scope.infos =Info;
+
+
+
+  $scope.infos =Info;
    // set the rate and max variables
   $scope.rating = {};
   $scope.rating.rate = 3;
   $scope.rating.max = 5;
-  $scope.showPopup = function(tipo) {
+  $scope.showPopup = function(id) {
   var myPopup = $ionicPopup.show({
          template: 'Seguro que queres mandar un SOS?<br>'
          +'<div>'
@@ -28,7 +31,8 @@ angular.module('starter')
                       navigator.geolocation.getCurrentPosition(function(pos) {
                          Ratings.$add({
                            "rate":$scope.rating.rate,
-                            "usu":"pepe",
+                            "usu": firebase.User.uid,
+                            "SosId":id,
                             "comentario":$scope.rating.comment,
                             "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
