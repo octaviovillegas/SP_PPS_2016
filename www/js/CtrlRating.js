@@ -3,8 +3,10 @@ angular.module('starter')
 .controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info,Ratings) {
 
 
+  new Firebase("https://triggered-4e761.firebaseio.com/SOS/usu/"+firebase.User.uid).once('value', function(snapshot){
+    $scope.infos = snapshot.val();
+  });
 
-  $scope.infos =Info;
    // set the rate and max variables
   $scope.rating = {};
   $scope.rating.rate = 3;

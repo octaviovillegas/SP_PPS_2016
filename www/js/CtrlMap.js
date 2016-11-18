@@ -26,6 +26,7 @@ angular.module('starter')
    
     // When button is clicked, the popup will be shown...
    $scope.showPopup = function(tipo) {
+    console.log(firebase.User);
       $scope.data = {}
     
       // Custom popup
