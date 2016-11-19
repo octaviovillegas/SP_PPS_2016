@@ -23,7 +23,7 @@ angular.module('starter')
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(function(usuario){ /*Logueo exitoso*/
         firebase.User = usuario;
-        alert("Bienvenidx " + usuario.displayName);
+        /*alert("Bienvenidx " + usuario.displayName);*/
         location.href="#/app/mapa"; //Redireccionamiento
       })
       .catch(function(error) { /*Manejo de errores*/
