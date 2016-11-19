@@ -106,11 +106,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
       }
     }
   })
-  .state('app.listaDeUsuarios', {
-    url: '/listaDeUsuarios', 
+
+  
+  .state('app.listadeSOS', {
+    url: '/listadeSOS', 
     views: {
       'menuContent': {
-        templateUrl: 'templates/listaDeUsuarios.html',
+        templateUrl: 'templates/listadeSOS.html',
         controller: 'listaDeUsuariosCtrl'
       }
     }
