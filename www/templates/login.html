@@ -9,7 +9,7 @@
       <div class="list login" >
         <label class="item item-input  inputLogin" >
           <span class="input-label ">Email</span>
-          <input type="text" ng-model="loginData.email" class=""">
+          <input type="text" ng-model="loginData.email" class="">
         </label>
 
         <label class="item item-input  inputLogin" >
@@ -18,11 +18,17 @@
         </label>
 
         <label class="btnLogin" >
-          <button class="button button-block button-balanced" type="submit">Logear</button>
+          <button class="button button-block button-balanced" id="logear" type="submit">Logear</button>
         </label>
       </div>
     </form>
+    <center><ion-spinner icon="android" class="invisible" id="spinner"></ion-spinner></center>
     <button id="login-button4" style="font-weight:600;color:#ffffff" class="button button-block button-positive button-clear" onclick="location.href='#/registro'">¿No tenes cuenta? Registrate</button>
+
+    <button class="button button-block button-balanced " ng-click="CargarUsuario1()"> Logearse como Usuario 1</button>
+    <button class="button button-block button-balanced " ng-click="CargarUsuario2()"> Logearse como Usuario 2</button>
+    <button class="button button-block button-balanced " ng-click="CargarUsuario3()"> Logearse como Administrador 1</button>
+    
 
   </ion-content>
 </ion-view>

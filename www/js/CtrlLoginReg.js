@@ -1,7 +1,7 @@
 //firebase.User.uid;
 angular.module('starter')
 
-.controller('loginCtrl', function($scope, $firebaseArray) {
+.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout) {
 
   $scope.loginData = {};
   $scope.Loguear = function(){
@@ -14,7 +14,7 @@ angular.module('starter')
       alert("Ingrese un password");
       return -1;
     }
-
+   $("#spinner").toggleClass("invisible");
     /*Crear variables con datos de logueo*/
     var email = $scope.loginData.email;
     var password = $scope.loginData.password;
@@ -23,8 +23,20 @@ angular.module('starter')
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(function(usuario){ /*Logueo exitoso*/
         firebase.User = usuario;
+           $("#spinner").toggleClass("invisible");
         /*alert("Bienvenidx " + usuario.displayName);*/
         location.href="#/app/mapa"; //Redireccionamiento
+
+        var myPopup = $ionicPopup.show({
+           template: '<center> Bienvenido ' + firebase.auth().currentUser.displayName + "</center>",
+           title: 'Bienvenido'
+        });
+        $timeout(function(){
+          myPopup.close();
+
+        }, 3000);
+
+        
       })
       .catch(function(error) { /*Manejo de errores*/
         var errorCode = error.code;
@@ -46,6 +58,24 @@ angular.module('starter')
         }
         console.info(error);
       });
+  }
+  $scope.CargarUsuario1 = function(){
+    $scope.loginData.password = "123456";
+    $scope.loginData.email = "Usuario@1.com";
+    //$('#logear').click();
+    //$scope.Logear();
+  }
+  $scope.CargarUsuario2 = function(){
+    $scope.loginData.password = "123456";
+    $scope.loginData.email = "Usuario@2.com";
+    //$('#logear').click();
+    //$scope.Logear();
+  }
+  $scope.CargarUsuario3 = function(){
+    $scope.loginData.password = "748159263";
+    $scope.loginData.email = "joaquin.omar96@gmail.com";
+    //$('#logear').click();
+    //$scope.Logear();
   }
 
 })
@@ -91,7 +121,14 @@ angular.module('starter')
           console.info(error);
         });
 
-        alert("Bienvenidx " + nombre);
+        var myPopup = $ionicPopup.show({
+           template: '<center> Bienvenido ' + firebase.auth().currentUser.displayName + "</center>",
+           title: 'Bienvenido'
+        });
+        $timeout(function(){
+          myPopup.close();
+
+        }, 3000);
         location.href="#/app/mapa"; //Redireccionamiento
       })
       .catch(function(error) { /*Manejo de errores*/

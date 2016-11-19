@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   return $firebaseArray(infosRef);
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,Admin) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,Admin, $ionicPopup) {
 
   var admins = Admin;
   var user = firebase.auth().currentUser;
@@ -37,7 +37,15 @@ angular.module('starter.controllers', [])
 
   // Cerrar sesion
   $scope.logout = function() {
-    alert("Sesion cerrada!");
+    //alert("Sesion cerrada!");
+    var myPopup = $ionicPopup.show({
+           template: '<center> Sesión Cerrada! </center>',
+           title: 'Logout'
+        });
+        $timeout(function(){
+          myPopup.close();
+
+        }, 1000);
     //Cerrar sesion DE GITHUB
     firebase.auth().signOut();
     location.href="#/login";
