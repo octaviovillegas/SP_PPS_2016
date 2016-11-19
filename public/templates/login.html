@@ -1,26 +1,28 @@
-<ion-view>
-  <ion-header-bar>
-    <h1 class="title">Logear</h1>
+<ion-view hide-nav-bar="true">
+  <ion-header-bar class="BGgreen700">
+    <h1 class="title BGgreen700">Logear</h1>
     <div class="buttons">
     </div>
   </ion-header-bar>
-  <ion-content>
-    <form ng-submit="Loguear()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="text" ng-model="loginData.email">
+  <ion-content class="BGgreen700">
+    <form ng-submit="Loguear()" >
+      <div class="list login" >
+        <label class="item item-input  inputLogin" >
+          <span class="input-label ">Email</span>
+          <input type="text" ng-model="loginData.email" class=""">
         </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
+
+        <label class="item item-input  inputLogin" >
+          <span class="input-label ">Password</span>
+          <input type="password" ng-model="loginData.password" class="">
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Logear</button>
+
+        <label class="btnLogin" >
+          <button class="button button-block button-balanced" type="submit">Logear</button>
         </label>
       </div>
     </form>
-    <button id="login-button4" style="font-weight:600;" class="button button-balanced  button-block button-clear" onclick="location.href='#/registro'">¿No tenes cuenta? Registrate</button>
+    <button id="login-button4" style="font-weight:600;color:#ffffff" class="button button-block button-positive button-clear" onclick="location.href='#/registro'">¿No tenes cuenta? Registrate</button>
 
   </ion-content>
 </ion-view>

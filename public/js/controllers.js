@@ -19,6 +19,7 @@ angular.module('starter.controllers', [])
 
   var admins = Admin;
   var user = firebase.auth().currentUser;
+  $scope.usr = firebase.auth().currentUser;
 
   if(user==null){
     alert("No esta Logeado");
@@ -41,7 +42,6 @@ angular.module('starter.controllers', [])
     firebase.auth().signOut();
     location.href="#/login";
   };
-  $scope.usr = firebase.User.displayName;
 });
 
 

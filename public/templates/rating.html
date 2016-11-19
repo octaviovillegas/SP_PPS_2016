@@ -1,7 +1,7 @@
-<ion-view view-title="Rating">
-	<ion-content>
-		<div ng-repeat="info in infos" >
-			<div class="card pading">
+<ion-view view-title="Rating" class="BGNat">
+	<ion-content class="slidein">
+		<div ng-repeat="info in info"  >
+			<div class="card pading"  ng-if="info.usu == usu">
 			  <div> 
 			  	<img src="img/{{info.tipo}}.png" height="42" width="42">
 			  	 Fecha:  {{info.date}}

@@ -2,16 +2,16 @@
 ##Integrantes - Responsabilidades
 ### Joaquin Pérez
 * Creación de archivos
-* CSS
 
 ### Julian Barrientos
 * Carga de datos
-* Boton flotante
 * Raiting
+* CSS
 
 ###Demian Acosta
 * Manejo de mapa
 * Grafico
+* Boton flotante
 
 ###Juan Fafasuli
 * Login
@@ -21,5 +21,6 @@
 ##App
 * IonicView ID: **6E561ABE**
 * [Firebase Hosting](https://triggered-4e761.firebaseapp.com)
-* [APK]() 
+* [APK]
 ##INFO
+La aplicación está re buena

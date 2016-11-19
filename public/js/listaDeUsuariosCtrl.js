@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('listaDeUsuariosCtrl', function($scope) {
+.controller('listaDeUsuariosCtrl', function($scope,$firebaseArray) {
 
 
 });
