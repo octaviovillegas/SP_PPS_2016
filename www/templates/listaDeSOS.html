@@ -1,12 +1,27 @@
 <ion-view view-title="Listado SOS" class="BGNat">
 	<ion-content>
 		<div ng-repeat="info in info" >
-			<div class="card pading slidein">
-			  <div> 
-			  	<img src="img/{{info.tipo}}.png" height="42" width="42">
-			  	 Fecha:  {{info.date}}	
-			  	 Usuario: {{info.usuName}}
-			  <div>
+			<div class="card  slidein">
+
+
+			  			  <div> 
+			  	<ng-map center="[{{info.lat}},{{info.lon}}]" zoom="13" default-style="false" disable-default-u-i="true" >  
+					<custom-marker position="[{{info.lat}},{{info.lon}}]">
+
+					 	<div>
+					 		<img src="img/{{info.tipo}}.png" height="42" width="42">
+					 	</div>
+					</custom-marker>
+
+				</ng-map> 
+				<div>
+			  	 	<div class="fecha usuario"> 
+					  	Fecha:  {{info.date}}	<br>
+					  	Usuario: {{info.usuName}}
+				  	 </div>
+			  	 <div class="rate pading"> <button class="button button-balanced" ng-click="showPopup({{info.id}})">Rate</button> </div>
+			  	</div>
+			  </div>
 			</div>
 		</div>
 	</ion-content>

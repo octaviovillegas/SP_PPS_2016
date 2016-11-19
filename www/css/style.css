@@ -160,8 +160,15 @@ ul.rating li i {
     margin-right: auto; 
     width: /*whatever width you want*/;
 }
+.fecha.usuario{
+    margin-top: 9px !important;
+    line-height: 27px !important;
+}
 .fecha{
-  float:left;
+    float: left;
+    margin-top: 23px;
+    line-height: 25px;
+    margin-left: 15px;
 }
 
 
