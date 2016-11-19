@@ -106,6 +106,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngMap',
       }
     }
   })
+
+  
   .state('app.listadeSOS', {
     url: '/listadeSOS', 
     views: {

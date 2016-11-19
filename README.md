@@ -22,7 +22,7 @@
 ##App
 * IonicView ID: **6E561ABE**
 * [Firebase Hosting](https://triggered-4e761.firebaseapp.com)
-* [APK](https://drive.google.com/open?id=0B2BmNET60cU8Y1ZBNVVKdE5kT3c)
+* [APK](https://drive.google.com/open?id=0B2BmNET60cU8b1g2VjVUWDRvMlk)
 
 
 ##Info
