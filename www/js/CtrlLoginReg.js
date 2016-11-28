@@ -39,19 +39,20 @@ angular.module('starter')
         //Configurar menu
         var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Admin");
         var admins = $firebaseArray(infosRef);
+        console.info(admins);
         var user = firebase.auth().currentUser;
         var flagAdmin = false;
         admins.$loaded(function(){
-        angular.forEach(admins, function(admin) {
-            if(admin.$value === user.uid){
-              $(".menu-item-admin").show();
-              flagAdmin = true;
-            }
-            if(!flagAdmin){
-              $(".menu-item-admin").hide();
-            }
-        })
-    });
+          angular.forEach(admins, function(admin) {
+              if(admin.$value === user.uid){
+                $(".menu-item-admin").show();
+                flagAdmin = true;
+              }
+              if(!flagAdmin){
+                $(".menu-item-admin").hide();
+              }
+          })
+        });
         
       })
       .catch(function(error) { /*Manejo de errores*/

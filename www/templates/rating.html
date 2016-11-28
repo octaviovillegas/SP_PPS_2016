@@ -3,7 +3,7 @@
 		<div ng-repeat="info in info"  >
 			<div class="card "  ng-if="info.usu == usu">
 			  <div> 
-			  	<ng-map ng-if="!info.puntuado" center="[{{info.lat}},{{info.lon}}]" zoom="13" default-style="false" disable-default-u-i="true" draggable="false">  
+			  	<ng-map center="[{{info.lat}},{{info.lon}}]" zoom="13" default-style="false" disable-default-u-i="true" draggable="false">  
 					<custom-marker position="[{{info.lat}},{{info.lon}}]">
 
 					 	<div>

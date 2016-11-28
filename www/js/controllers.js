@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   return $firebaseArray(infosRef);
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,Admin, $ionicPopup) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup) {
 
   var user = $scope.usr = firebase.auth().currentUser;
 

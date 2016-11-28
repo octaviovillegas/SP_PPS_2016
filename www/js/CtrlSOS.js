@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info) {
   
    $scope.infos = Info;
-   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+   var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Admin");
    var lastid=0;
     // When button is clicked, the popup will be shown...
    $scope.showPopup = function(tipo) {
@@ -34,8 +34,7 @@ angular.module('starter')
                             "lon": pos.coords.longitude,
                             "usu": firebase.User.uid,
                             "id":lastid,
-                            "date": $filter('date')(new Date(), 'dd/MM/yyyy'),
-                            "puntuado": false
+                            "date": $filter('date')(new Date(), 'dd/MM/yyyy')
                           });               
                       }, 
                       function(error) {                    
