@@ -34,7 +34,8 @@ angular.module('starter')
                             "lon": pos.coords.longitude,
                             "usu": firebase.User.uid,
                             "id":lastid,
-                            "date": $filter('date')(new Date(), 'dd/MM/yyyy')
+                            "date": $filter('date')(new Date(), 'dd/MM/yyyy'),
+                            "puntuado": false
                           });               
                       }, 
                       function(error) {                    

@@ -16,14 +16,11 @@ angular.module('starter')
     for(var i=0;i<Ratings.lenght;i++){
         if(Ratings[i].SosId == id){
           rate = Ratings[i];
-          Ratings[i].update({
-            "puntuado": true
-          });
         }
     }
     console.log(rate);
   var myPopup = $ionicPopup.show({
-         template: 'Puntuacion y comentario<br>'
+         template: 'Seguro que queres mandar un SOS?<br>'
          +'<div>'
 		 +'<rating ng-model="rating.rate" max="rating.max"></rating>'
 		 +'<textarea ng-model="rating.comment"></textarea>'
@@ -56,9 +53,7 @@ angular.module('starter')
             }
          ]
       });
-    
-
-
+    myPopup = null;
 	}
 });
 

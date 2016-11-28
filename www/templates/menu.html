@@ -25,11 +25,14 @@
         <ion-item menu-close href="#/app/mapa">
           Mapa
         </ion-item>
-        <ion-item menu-close href="#/app/graficos" ng-if="autorizo">
+        <ion-item class="menu-item-admin" menu-close href="#/app/graficos">
           Graficos
         </ion-item>
-         <ion-item menu-close href="#/app/listadeSOS" ng-if="autorizo">
+        <ion-item class="menu-item-admin" menu-close href="#/app/listadeSOS">
           Lista de SOS
+        </ion-item>
+        <ion-item class="menu-item-admin" menu-close href="#/app/puntuaciones">
+          Puntuaciones
         </ion-item>
         <ion-item menu-close ng-click="logout()">
           Logout
