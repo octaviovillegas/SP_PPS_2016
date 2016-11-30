@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info) {
+.controller('SOSCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info, $loaded) {
   
    $scope.infos = Info;
    var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Admin");
@@ -8,7 +8,7 @@ angular.module('starter')
     // When button is clicked, the popup will be shown...
    $scope.showPopup = function(tipo) {
       $scope.data = {}
-      infosRef.limit(1).once("child_added", function (snapshot) {
+      infosRef.limit(1).once("value", function (snapshot) {
         lastid=(snapshot.val().id==undefined)?1:snapshot.val().id+1;
         console.log(lastid);
       });

@@ -3,8 +3,6 @@ angular.module('starter')
 .controller('mapaCtrl', function($scope, $stateParams,$firebaseArray,$timeout,Info, $ionicPopup,$filter,Admin) {
 
   $scope.marcasMapa =Info;
-  var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
-  var lastid=0;
   var options = {
                   enableHighAccuracy: true
                 };
@@ -21,14 +19,16 @@ angular.module('starter')
 
 
   $scope.infos = Info;
-
+   
+    // When button is clicked, the popup will be shown...
+   $scope.showPopup = function(tipo) {
+    var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+    var lastid=0;
     infosRef.limit(1).once("child_added", function (snapshot) {
       lastid=(snapshot.val().id==undefined)?1:snapshot.val().id+1;
       console.log(lastid);
     });
-   
-    // When button is clicked, the popup will be shown...
-   $scope.showPopup = function(tipo) {
+    
     console.log(firebase.User);
       $scope.data = {}
     

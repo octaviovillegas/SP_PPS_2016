@@ -4,6 +4,7 @@ angular.module('starter')
 
 
   $scope.info =Info;
+  console.log($scope.info.tipo);
   $scope.usu = firebase.auth().currentUser.uid;
 
   // set the rate and max variables
@@ -26,8 +27,11 @@ angular.module('starter')
           flagPuntuado = true;
         }
       })
-   
+      
       if(!flagPuntuado){
+        if(!$scope.rating.comment){
+          $scope.rating.comment = "";
+        }
         var myPopup = $ionicPopup.show({
                template: 'Puntuacion y comentario<br>'
                +'<div>'
@@ -47,11 +51,12 @@ angular.module('starter')
                           };
                           var latlon;
                             navigator.geolocation.getCurrentPosition(function(pos) {
-                               Ratings.$add({
+                               ratings.$add({
                                  "rate":$scope.rating.rate,
                                   "SosId":id,
                                   "comentario":$scope.rating.comment,
-                                  "date": $filter('date')(new Date(), 'dd/MM/yyyy')
+                                  "date": $filter('date')(new Date(), 'dd/MM/yyyy'),
+                                  "usuario": firebase.auth().currentUser.displayName
                                 });               
                             }, 
                             function(error) {                    
