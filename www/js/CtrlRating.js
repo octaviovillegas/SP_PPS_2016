@@ -4,7 +4,6 @@ angular.module('starter')
 
 
   $scope.info =Info;
-  console.log($scope.info.tipo);
   $scope.usu = firebase.auth().currentUser.uid;
 
   // set the rate and max variables
@@ -20,6 +19,13 @@ angular.module('starter')
     var ratings = $firebaseArray(infosRef);
     console.info(ratings);
     var flagPuntuado = false;
+
+    $.each(Info, function(i){
+      console.info();
+      if(Info[i].id == id){
+        alert("Existe");
+      }
+    });
 
     ratings.$loaded(function(){
       $.each(ratings, function(i){
