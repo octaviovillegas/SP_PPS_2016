@@ -20,12 +20,6 @@ angular.module('starter')
     console.info(ratings);
     var flagPuntuado = false;
 
-    $.each(Info, function(i){
-      console.info();
-      if(Info[i].id == id){
-        alert("Existe");
-      }
-    });
 
     ratings.$loaded(function(){
       $.each(ratings, function(i){
@@ -35,6 +29,14 @@ angular.module('starter')
       })
       
       if(!flagPuntuado){
+
+        var tipo;
+        $.each(Info, function(i){
+          if(Info[i].id == id){
+            tipo = Info[i].tipo;
+          }
+        });
+
         if(!$scope.rating.comment){
           $scope.rating.comment = "";
         }
@@ -58,11 +60,12 @@ angular.module('starter')
                           var latlon;
                             navigator.geolocation.getCurrentPosition(function(pos) {
                                ratings.$add({
-                                 "rate":$scope.rating.rate,
-                                  "SosId":id,
-                                  "comentario":$scope.rating.comment,
+                                  "rate": $scope.rating.rate,
+                                  "SosId": id,
+                                  "comentario": $scope.rating.comment,
                                   "date": $filter('date')(new Date(), 'dd/MM/yyyy'),
-                                  "usuario": firebase.auth().currentUser.displayName
+                                  "usuario": firebase.auth().currentUser.displayName,
+                                  "tipo": tipo
                                 });               
                             }, 
                             function(error) {                    
