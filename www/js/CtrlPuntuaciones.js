@@ -54,38 +54,40 @@ angular.module('starter')
             /**** ACTUALIZAR ULTIMOS 3 ****/
             var htmlInterno;
             htmlInterno = "<ion-list>";
-            console.info(Ratings[0].tipo);
-            var i;
-            for(i=Ratings.length; i <= (Ratings.length-3); i--){
-                    console.info("ddf");
+            var length = Ratings.length;
+            $.each(Ratings, function(i){
+                if( i >= (Ratings.length-3) ){
+
                     var icon;
-                    var nombre;
-                    var date;
-                    var rate;
-                    var comentario;
-                    console.log(Ratings[i].comentario);
+                    var color;
+
                     switch(Ratings[i].tipo){
                         case 0: //Accidente
                             icon = "ion-android-car";
+                            color = "241, 196, 15";
                             break; 
                         case 1: //Averia
                             icon = "ion-wrench";
+                            color = "52, 152, 219";
                             break;
                         case 2: //Animal suelto
                             icon = "ion-ios-paw";
+                            color = "46, 204, 113";
                             break;
                         case 3:  //Ambulancia
                             icon = "ion-medkit";
+                            color = "231, 76, 60";
                             break; 
                     }
 
                     htmlInterno += "<ion-item>";
-                    htmlInterno += "<div style=\"background-color:rgb(52, 152, 219); width: 50px; height: 50px; border-radius: 40px; float: left; margin: 10px;\">";
+                    htmlInterno += "<div style=\"background-color:rgb("+color+"); width: 50px; height: 50px; border-radius: 40px; float: left; margin: 10px;\">";
                     htmlInterno += "<div ng-class=\"{'"+icon+"':true}\" style=\"color: white; display: table; margin: 0 auto; margin-top: 15px;\"></div>";
                     htmlInterno += "</div>";
-                    htmlInterno += "<div> <h2>Joaquin Perez</h2> <p>30/11/2016</p> <rating ng-model=\"4\" max=\"5\"></rating> <center><p style=\"font-style: italic;\"> \"Exelente.\" </p></center></div>";
+                    htmlInterno += "<div> <h2>"+Ratings[i].usuario+"</h2> <p>"+Ratings[i].date+"</p> <rating ng-model=\""+Ratings[i].rate+"\" max=\"5\"></rating> <center><p style=\"font-style: italic;\"> \""+Ratings[i].comentario+"\" </p></center></div>";
                     htmlInterno += "</ion-item>";
-            }
+                }
+            });
             htmlInterno += "</ion-list>"
             
             var elemento = ".ultimas-puntuaciones";
@@ -100,16 +102,13 @@ angular.module('starter')
 
         var elemento = (typeof elemento == "string") ? elemento : null;  
         if (elemento != null) {
-            var $div = $(elemento);
-            // The parent of the new element
-            var $target = $("[ng-app]");
+            var div = $(elemento);
+            var target = $("[ng-app]");
 
-            angular.element($target).injector().invoke(["$compile", 
+            angular.element(target).injector().invoke(["$compile", 
                 function ($compile) {
-                    var $scope = angular.element($target).scope();
-                    $compile($div)($scope);
-                    // Finally, refresh the watch expressions in the new element
-                    //$scope.$apply();
+                    var $scope = angular.element(target).scope();
+                    $compile(div)($scope);
                 }
             ]);
         }
