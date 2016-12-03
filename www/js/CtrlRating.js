@@ -2,17 +2,16 @@ angular.module('starter')
 
 .controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info, $timeout, $firebaseArray) {
 
-  var ref = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
+  var ref = new Firebase("https://triggered-4e761.firebaseio.com/");
   ref.on("value", function(snapshot){
 
-    var ratings = $firebaseArray(ref);
-    var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
-    var SOS = $firebaseArray(infosRef);
+    var ratingRef = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
+    var sosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+    var ratings = $firebaseArray(ratingRef);
+    var SOS = $firebaseArray(sosRef);
 
     var arraySOS = [];
     $scope.usu = firebase.auth().currentUser.uid;
-    
-    var hayDatos = false;
 
     ratings.$loaded(function(){
 
@@ -21,16 +20,16 @@ angular.module('starter')
       })
 
       $.each(ratings, function(i){
-        $.each($scope.info, function(j){
-          if(ratings[i].SosId == arraySOS[j].id || ratings[i].usuario != firebase.auth().currentUser.displayName){
+        $.each(arraySOS, function(j){
+
+          if( (!(arraySOS[j] === undefined) && ratings[i].SosId == arraySOS[j].id) /*|| ratings[i].usuario != firebase.auth().currentUser.displayName*/){
             arraySOS.splice(j, 1);
-            hayDatos = true;
           }
         })
       })
       $scope.info = arraySOS;
 
-      if(!hayDatos){ //Undefined 
+      if(arraySOS[0] === undefined){ //Undefined 
         var htmlCont;
 
         htmlCont =  "<ion-list>";
@@ -106,9 +105,6 @@ angular.module('starter')
                           function(error) {                    
                               alert('Unable to get location: ' + error.message);
                           }, options);
-                        $timeout(function(){
-                          location.reload(); 
-                        }, 1000);
                       }
                 }
               ]
