@@ -2,26 +2,38 @@ angular.module('starter')
 
 .controller('RatingCtrl', function($scope, $ionicPopup,$stateParams,$filter,Info, $timeout, $firebaseArray) {
 
-  function actualizarSOS(){
-    /*** ELIMINAMOS LOS QUE YA FUERON PUNTUADOS ***/
-    var SOS = Info;
-    var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
-    var ratings = $firebaseArray(infosRef);
+  var ref = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
+  ref.on("value", function(snapshot){
+
+    var ratings = $firebaseArray(ref);
+    var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+    var SOS = $firebaseArray(infosRef);
+
+    var arraySOS = [];
+    $scope.usu = firebase.auth().currentUser.uid;
+    
+    var hayDatos = false;
+
     ratings.$loaded(function(){
+
+      $.each(SOS, function(j){
+        arraySOS.push(SOS[j]);
+      })
+
       $.each(ratings, function(i){
-        $.each(SOS, function(j){
-          if(ratings[i].SosId == SOS[j].id || SOS[j].usr != firebase.auth().currentUser.uid){
-            SOS.$remove(j);
+        $.each($scope.info, function(j){
+          if(ratings[i].SosId == arraySOS[j].id || ratings[i].usuario != firebase.auth().currentUser.displayName){
+            arraySOS.splice(j, 1);
+            hayDatos = true;
           }
         })
       })
-      $scope.info =SOS;
-      $scope.usu = firebase.auth().currentUser.uid;
+      $scope.info = arraySOS;
 
-      if(!SOS[0]){ //Undefined 
+      if(!hayDatos){ //Undefined 
         var htmlCont;
 
-        htmlCont = "<ion-list>";
+        htmlCont =  "<ion-list>";
         htmlCont += "<div class=\"card\" style=\"padding: 10px; color: #444;\">";
         htmlCont += "<div>";
         htmlCont += "<center><h2>No hay SOS sin opiniones</h2></center>";
@@ -37,8 +49,7 @@ angular.module('starter')
       }
 
     });
-  }
-  actualizarSOS();
+  });
 
   // set the rate and max variables
   $scope.rating = {};
