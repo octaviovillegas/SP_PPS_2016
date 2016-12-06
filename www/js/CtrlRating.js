@@ -6,27 +6,26 @@ angular.module('starter')
   ref.on("value", function(snapshot){
 
     var ratingRef = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
-    var sosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
     var ratings = $firebaseArray(ratingRef);
+    var sosRef = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
     var SOS = $firebaseArray(sosRef);
 
     var arraySOS = [];
     $scope.usu = firebase.auth().currentUser.uid;
 
     ratings.$loaded(function(){
-
       $.each(SOS, function(j){
         arraySOS.push(SOS[j]);
-      })
-
+      });
       $.each(ratings, function(i){
         $.each(arraySOS, function(j){
 
           if( (!(arraySOS[j] === undefined) && ratings[i].SosId == arraySOS[j].id) /*|| ratings[i].usuario != firebase.auth().currentUser.displayName*/){
             arraySOS.splice(j, 1);
           }
-        })
-      })
+        });
+      });
+
       $scope.info = arraySOS;
 
       if(arraySOS[0] === undefined){ //Undefined 
@@ -45,6 +44,8 @@ angular.module('starter')
 
         $("#contenedor").html(htmlCont);
         compilarElemento("#contenedor")
+      }else{
+        $("#contenedor").html("");
       }
 
     });
