@@ -1,7 +1,7 @@
 //firebase.User.uid;
 angular.module('starter')
 
-.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout) {
+.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout, $ionicPush) {
 
   $scope.loginData = {};
   $scope.Loguear = function(){
@@ -52,6 +52,13 @@ angular.module('starter')
                 $(".menu-item-admin").hide();
               }
           })
+        });
+
+        //Registrar para notificaciones
+        $ionicPush.register().then(function(t) {
+          return $ionicPush.saveToken(t);
+        }).then(function(t) {
+          console.log('Token saved:', t.token);
         });
         
       })

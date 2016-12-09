@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   return $firebaseArray(infosRef);
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicPush) {
 
   var user = $scope.usr = firebase.auth().currentUser;
 
@@ -39,6 +39,16 @@ angular.module('starter.controllers', [])
     firebase.auth().signOut();
     location.href="#/login";
   };
+
+  //MANEJO DE NOFICACIONES
+  $scope.$on('cloud:push:notification', function(event, data) {
+    var msg = data.message;
+    console.info()ñ
+    var myPopup = $ionicPopup.show({
+      template: '<center> ' + data.message + "</center>",
+      title: 'Bienvenido'
+    });
+  });
 });
 
 
