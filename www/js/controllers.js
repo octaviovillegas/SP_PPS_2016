@@ -31,23 +31,24 @@ angular.module('starter.controllers', [])
            template: '<center> Sesión Cerrada! </center>',
            title: 'Logout'
         });
-        $timeout(function(){
-          myPopup.close();
-
-        }, 1000);
+    $timeout(function(){
+      myPopup.close();
+    }, 1000);
     //Cerrar sesion DE GITHUB
     firebase.auth().signOut();
     location.href="#/login";
   };
 
-  //MANEJO DE NOFICACIONES
   $scope.$on('cloud:push:notification', function(event, data) {
     var msg = data.message;
-    console.info()ñ
+    alert(data);
     var myPopup = $ionicPopup.show({
-      template: '<center> ' + data.message + "</center>",
-      title: 'Bienvenido'
+      template: '<center>' + msg + '</center>',
+      title: 'Logout'
     });
+    $timeout(function(){
+      myPopup.close();
+    }, 1000);
   });
 });
 
