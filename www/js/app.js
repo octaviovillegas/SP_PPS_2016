@@ -10,6 +10,10 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'ngCor
     token: null
 })
 
+.value('esAdminVal', {
+    admin: false
+})
+
 .config(function($ionicCloudProvider) {
   $ionicCloudProvider.init({
     "core": {

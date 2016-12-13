@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   return $firebaseArray(infosRef);
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicPush) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicPush, esAdminVal) {
 
   var user = $scope.usr = firebase.auth().currentUser;
 
@@ -38,6 +38,34 @@ angular.module('starter.controllers', [])
     firebase.auth().signOut();
     location.href="#/login";
   };
+
+  var ref = new Firebase("https://triggered-4e761.firebaseio.com/SOS");
+  var primerEvento = false;
+  ref.on("value", function(snapshot){
+
+    if(primerEvento && esAdminVal){
+      document.addEventListener('deviceready', function () {
+
+        // Datos de la notificacion
+
+        //Envio de notificacion
+        cordova.plugins.notification.local.schedule({
+          title: "Meeting in 15 minutes!",
+          text: "Pepito necesita un taxi",
+          at: "tomorrow_at_8_45_am",
+          data: { meetingId:"#123FG8" }
+        });
+
+        //Click sobre la notificacion
+        cordova.plugins.notification.local.on("click", function (notification) {
+            location.href="#/app/sos"; //Redireccionamiento
+        });
+      }, false);
+    }else{
+      primerEvento = true;
+    }
+
+  });
 
   $scope.$on('cloud:push:notification', function(event, data) {
     var msg = data.message;

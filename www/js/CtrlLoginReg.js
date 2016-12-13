@@ -1,7 +1,7 @@
 //firebase.User.uid;
 angular.module('starter')
 
-.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout, $ionicPush, tokenDispositivoVal) {
+.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout, $ionicPush, tokenDispositivoVal, esAdminVal) {
 
   $scope.loginData = {};
   $scope.Loguear = function(){
@@ -47,9 +47,11 @@ angular.module('starter')
               if(admin.$value === user.uid){
                 $(".menu-item-admin").show();
                 flagAdmin = true;
+                esAdminVal = true;
               }
               if(!flagAdmin){
                 $(".menu-item-admin").hide();
+                esAdminVal = false;
               }
           })
         });
