@@ -41,9 +41,9 @@ angular.module('starter.controllers', [])
 
   $scope.$on('cloud:push:notification', function(event, data) {
     var msg = data.message;
-    alert(data);
+    alert(msg);
     var myPopup = $ionicPopup.show({
-      template: '<center>' + msg + '</center>',
+      template: msg,
       title: 'Logout'
     });
     $timeout(function(){

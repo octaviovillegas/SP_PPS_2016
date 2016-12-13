@@ -6,10 +6,14 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3', 'ion-floating-menu', 'ionic.rating', 'chart.js'])
 
+.value('tokenDispositivoVal', {
+    token: null
+})
+
 .config(function($ionicCloudProvider) {
   $ionicCloudProvider.init({
     "core": {
-      "app_id": "fbfd5a04"
+      "app_id": "c2b93a13"
     }
   });
 })
@@ -17,7 +21,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'ngCor
 .config(function($ionicCloudProvider) {
   $ionicCloudProvider.init({
     "core": {
-      "app_id": "fbfd5a04"
+      "app_id": "c2b93a13"
     },
     "push": {
       "sender_id": "449742373850",

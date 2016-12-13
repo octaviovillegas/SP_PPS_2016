@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('puntuacionesCtrl', function($scope, $stateParams,$firebaseArray,$timeout,$timeout, $compile)  {
+.controller('puntuacionesCtrl', function($scope, $stateParams,$firebaseArray,$timeout,$timeout, $compile, tokenDispositivoVal)  {
 
 
     var ref = new Firebase("https://triggered-4e761.firebaseio.com/Ratings");
@@ -134,4 +134,39 @@ angular.module('starter')
                 }
             }
     };
+
+
+    document.addEventListener('deviceready', function () {
+        // Schedule notification for tomorrow to remember about the meeting
+        cordova.plugins.notification.local.schedule({
+            id: 10,
+            title: "Meeting in 15 minutes!",
+            text: "Jour fixe Produktionsbesprechung",
+            at: "tomorrow_at_8_45_am",
+            data: { meetingId:"#123FG8" }
+        });
+
+        // Join BBM Meeting when user has clicked on the notification 
+        cordova.plugins.notification.local.on("click", function (notification) {
+            if (notification.id == 10) {
+                alert("click");
+                //joinMeeting(notification.data.meetingId);
+            }
+        });
+
+        // Notification has reached its trigger time (Tomorrow at 8:45 AM)
+        cordova.plugins.notification.local.on("trigger", function (notification) {
+            if (notification.id != 10)
+                return;
+
+            // After 10 minutes update notification's title 
+            setTimeout(function () {
+                cordova.plugins.notification.local.update({
+                    id: 10,
+                    title: "Meeting in 5 minutes!"
+                });
+            }, 600000);
+        });
+    }, false);
+
 });

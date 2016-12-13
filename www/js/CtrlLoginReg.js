@@ -1,7 +1,7 @@
 //firebase.User.uid;
 angular.module('starter')
 
-.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout, $ionicPush) {
+.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout, $ionicPush, tokenDispositivoVal) {
 
   $scope.loginData = {};
   $scope.Loguear = function(){
@@ -59,6 +59,7 @@ angular.module('starter')
           return $ionicPush.saveToken(t);
         }).then(function(t) {
           console.log('Token saved:', t.token);
+          tokenDispositivoVal = t.token;
         });
         
       })
@@ -145,10 +146,19 @@ angular.module('starter')
           console.info(error);
         });
 
+        //Registrar para notificaciones
+        $ionicPush.register().then(function(t) {
+          return $ionicPush.saveToken(t);
+        }).then(function(t) {
+          console.log('Token saved:', t.token);
+          tokenDispositivoVal = t.token;
+        });
+
         var myPopup = $ionicPopup.show({
            template: '<center> Bienvenido ' + firebase.auth().currentUser.displayName + "</center>",
            title: 'Bienvenido'
         });
+
         $timeout(function(){
           myPopup.close();
 
