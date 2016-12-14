@@ -43,23 +43,30 @@ angular.module('starter.controllers', [])
   var primerEvento = false;
   ref.on("value", function(snapshot){
 
-    if(primerEvento && esAdminVal){
-      document.addEventListener('deviceready', function () {
+    if(primerEvento){
+      document.addEventListener('deviceready', function () { //Cuando el dispositivo esta listo
+        if(esAdminVal.admin){ //Si es administrador
 
-        // Datos de la notificacion
+          var SOS = snapshot.val();
+          alert(SOS)
+          $.each(SOS, function(i){
+            alert(SOS[i].id);
+          });
 
-        //Envio de notificacion
-        cordova.plugins.notification.local.schedule({
-          title: "Meeting in 15 minutes!",
-          text: "Pepito necesita un taxi",
-          at: "tomorrow_at_8_45_am",
-          data: { meetingId:"#123FG8" }
-        });
+          //Envio de notificacion
+          cordova.plugins.notification.local.schedule({
+            title: "Meeting in 15 minutes!",
+            text: "Pepito necesita un taxi",
+            icon: "file://img/ionic.png"
+            //icon: ""
+          });
 
-        //Click sobre la notificacion
-        cordova.plugins.notification.local.on("click", function (notification) {
-            location.href="#/app/sos"; //Redireccionamiento
-        });
+          //Click sobre la notificacion
+          cordova.plugins.notification.local.on("click", function (notification) {
+              location.href="#/listadeSOS"; //Redireccionamiento
+          });
+
+        }
       }, false);
     }else{
       primerEvento = true;

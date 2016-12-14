@@ -47,11 +47,11 @@ angular.module('starter')
               if(admin.$value === user.uid){
                 $(".menu-item-admin").show();
                 flagAdmin = true;
-                esAdminVal = true;
+                esAdminVal.admin = true;
               }
               if(!flagAdmin){
                 $(".menu-item-admin").hide();
-                esAdminVal = false;
+                esAdminVal.admin = false;
               }
           })
         });
@@ -61,7 +61,6 @@ angular.module('starter')
           return $ionicPush.saveToken(t);
         }).then(function(t) {
           console.log('Token saved:', t.token);
-          tokenDispositivoVal = t.token;
         });
         
       })

@@ -11,7 +11,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'ngCor
 })
 
 .value('esAdminVal', {
-    admin: false
+    admin: null
 })
 
 .config(function($ionicCloudProvider) {
