@@ -1,0 +1,166 @@
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+// 'starter.controllers' is found in controllers.js
+angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'ngCordova', 'ngMap','firebase','nvd3', 'ion-floating-menu', 'ionic.rating', 'chart.js'])
+
+.value('tokenDispositivoVal', {
+    token: null
+})
+
+.value('esAdminVal', {
+    admin: null
+})
+
+.config(function($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "c2b93a13"
+    }
+  });
+})
+
+.config(function($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "c2b93a13"
+    },
+    "push": {
+      "sender_id": "449742373850",
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+        },
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    }
+  });
+})
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+
+    }
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
+})
+/*.run(function($ionicPlatform){
+  $ionicPlatform.ready(function(){
+    var push = new Ionic.Push({
+      "debug" : true
+    });
+    push.register(function(token){
+      console.log("my device token:", token.token);
+      push.saveToken(token);
+    });
+
+
+  });
+})*/
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl'
+  })
+
+ .state('app.sos', {
+    url: '/sos',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/SOS.html',
+          controller: 'SOSCtrl'
+      }
+    }
+  })
+
+  .state('app.mapa', {
+      url: '/mapa',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/mapa.html',
+          controller: 'mapaCtrl'
+        }
+      }
+    })
+
+  .state('app.grafico', {
+      url: '/graficos',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/graficos.html',
+          controller: 'graficoCtrl'
+        }
+      }
+    })
+    .state('app.rating', {
+      url: '/rating',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/rating.html',
+          controller: 'RatingCtrl'
+        }
+      }
+    })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+
+  })
+
+  .state('registro', {
+    url: '/registro', 
+    templateUrl: 'templates/registro.html',
+    controller: 'registroCtrl'
+  })
+  
+  .state('app.feedBack', {
+    url: '/feedBack', 
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/feedBack.html',
+        controller: 'feedBackCtrl'
+      }
+    }
+  })
+  .state('app.listadeSOS', {
+    url: '/listadeSOS', 
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/listadeSOS.html',
+        controller: 'listaDeUsuariosCtrl'
+      }
+    }
+  })
+  .state('app.puntuaciones', {
+      url: '/puntuaciones',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/puntuaciones.html',
+          controller: 'puntuacionesCtrl'
+        }
+      }
+    })
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/login');
+});

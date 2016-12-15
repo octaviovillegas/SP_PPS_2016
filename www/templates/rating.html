@@ -1,0 +1,28 @@
+<ion-view view-title="Rating" class="BGNat">
+	<ion-content class="slidein">
+		<div id="contenedor">
+		</div>
+		<div>
+			<div id="repeat" ng-repeat="info in info"  >
+	 			<div class="card "  ng-if="info.usu == usu">
+				  <div> 
+				  	<ng-map center="[{{info.lat}},{{info.lon}}]" zoom="13" default-style="false" disable-default-u-i="true" draggable="false">  
+						<custom-marker position="[{{info.lat}},{{info.lon}}]">
+
+						 	<div>
+						 		<img src="img/{{info.tipo}}.png" height="42" width="42">
+						 	</div>
+						</custom-marker>
+
+					</ng-map> 
+					<div>
+				  	 <div class="fecha">Fecha:  {{info.date}}</div>
+				  	 <div class="rate pading"> <button class="button button-balanced" ng-click="showPopup({{info.id}})">Rate</button> </div>
+				  	</div>
+				  </div>
+				</div>
+
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
