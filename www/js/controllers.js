@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   return $firebaseArray(infosRef);
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicPush, esAdminVal) {
+.controller('AppCtrl', function($scope, $ionicModal, $firebaseArray, $timeout, $ionicPopup, $ionicPush, esAdminVal) {
 
   var user = $scope.usr = firebase.auth().currentUser;
 
@@ -47,23 +47,51 @@ angular.module('starter.controllers', [])
       document.addEventListener('deviceready', function () { //Cuando el dispositivo esta listo
         if(esAdminVal.admin){ //Si es administrador
 
-          var SOS = snapshot.val();
-          alert(SOS)
-          $.each(SOS, function(i){
-            alert(SOS[i].id);
-          });
+          var SOS = $firebaseArray(ref);
 
-          //Envio de notificacion
-          cordova.plugins.notification.local.schedule({
-            title: "Meeting in 15 minutes!",
-            text: "Pepito necesita un taxi",
-            icon: "file://img/ionic.png"
-            //icon: ""
-          });
+          SOS.$loaded().then(function(){
+            $.each(SOS, function(i){
+              if(i == (SOS.length-1)){
+                var nombre = SOS[i].usuName;
+                var hecho;
+                var text;
+                var title = "NUEVO SOS";
+                switch(SOS[i].tipo){
+                  case 0:
+                    hecho = " sufrió un Accidente";
+                    break;
+                  case 1:
+                    hecho = " sufrió una Averia en su Vehiculo";
+                    break;
+                  case 2:
+                    hecho = " vió un Animal Suelto";
+                    break;
+                  case 3:
+                    hecho = " necestia una Ambulancia";
+                    break;
+                }
+                text = nombre + hecho;
 
-          //Click sobre la notificacion
-          cordova.plugins.notification.local.on("click", function (notification) {
-              location.href="#/listadeSOS"; //Redireccionamiento
+                //Envio de notificacion
+                cordova.plugins.notification.local.schedule({
+                  title: title,
+                  text: text
+                  //icon: ""
+                });
+
+                //Click sobre la notificacion
+                cordova.plugins.notification.local.on("click", function (notification) {
+                    var myPopup = $ionicPopup.show({
+                      template: text,
+                      title: title
+                    });
+                    $timeout(function(){
+                      myPopup.close();
+                    }, 3000);
+                });
+
+              }
+            });
           });
 
         }
